@@ -469,43 +469,43 @@
   <!-- Corner accents -->
   <div
     class="absolute -top-px -left-px w-2 h-2 border-l border-t {canFit
-      ? 'border-exo-yellow/30 group-hover:border-exo-yellow/60'
+      ? 'border-exo-green/30 group-hover:border-exo-green/60'
       : 'border-red-500/30'} transition-colors"
   ></div>
   <div
     class="absolute -top-px -right-px w-2 h-2 border-r border-t {canFit
-      ? 'border-exo-yellow/30 group-hover:border-exo-yellow/60'
+      ? 'border-exo-green/30 group-hover:border-exo-green/60'
       : 'border-red-500/30'} transition-colors"
   ></div>
   <div
     class="absolute -bottom-px -left-px w-2 h-2 border-l border-b {canFit
-      ? 'border-exo-yellow/30 group-hover:border-exo-yellow/60'
+      ? 'border-exo-green/30 group-hover:border-exo-green/60'
       : 'border-red-500/30'} transition-colors"
   ></div>
   <div
     class="absolute -bottom-px -right-px w-2 h-2 border-r border-b {canFit
-      ? 'border-exo-yellow/30 group-hover:border-exo-yellow/60'
+      ? 'border-exo-green/30 group-hover:border-exo-green/60'
       : 'border-red-500/30'} transition-colors"
   ></div>
 
   <div
     class="bg-exo-dark-gray/60 border {canFit
-      ? 'border-exo-yellow/20 group-hover:border-exo-yellow/40'
-      : 'border-red-500/20'} p-3 transition-all duration-200 group-hover:shadow-[0_0_15px_rgba(255,215,0,0.1)]"
+      ? 'border-exo-green/20 group-hover:border-exo-green/40'
+      : 'border-red-500/20'} p-3 transition-all duration-200 group-hover:shadow-[0_0_15px_rgba(0,255,65,0.1)]"
   >
     <!-- Model Name & Memory Required -->
     <div class="flex items-start justify-between gap-2 mb-2">
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2">
           <div
-            class="text-exo-yellow text-xs font-mono tracking-wide truncate"
+            class="text-exo-green text-xs font-mono tracking-wide truncate"
             title={model.name || model.id}
           >
             {model.name || model.id}
           </div>
           {#if huggingFaceModelId}
             <a
-              class="shrink-0 text-white/60 hover:text-exo-yellow transition-colors"
+              class="shrink-0 text-white/60 hover:text-exo-green transition-colors"
               href={`https://huggingface.co/${huggingFaceModelId}`}
               target="_blank"
               rel="noreferrer noopener"
@@ -555,7 +555,7 @@
       <div class="flex-shrink-0 text-right">
         <div
           class="text-xs font-mono {canFit
-            ? 'text-exo-yellow'
+            ? 'text-exo-green'
             : 'text-red-400'}"
         >
           {estimatedMemory}GB
@@ -615,7 +615,7 @@
       >
         <!-- Scanline effect -->
         <div
-          class="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(255,215,0,0.02)_2px,rgba(255,215,0,0.02)_4px)] pointer-events-none"
+          class="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,255,65,0.02)_2px,rgba(0,255,65,0.02)_4px)] pointer-events-none"
         ></div>
 
         <svg
@@ -696,7 +696,7 @@
                   y1={node.y}
                   x2={node2.x}
                   y2={node2.y}
-                  stroke={node.isUsed && node2.isUsed ? "#FFD700" : "#374151"}
+                  stroke={node.isUsed && node2.isUsed ? "#00FF41" : "#374151"}
                   stroke-width="1"
                   stroke-dasharray={node.isUsed && node2.isUsed ? "4,2" : "2,4"}
                   opacity={node.isUsed && node2.isUsed ? 0.4 : 0.15}
@@ -731,7 +731,7 @@
                   text-anchor="start"
                   dominant-baseline="hanging"
                   font-size="6"
-                  font-family="SF Mono, Monaco, monospace"
+                  font-family="Silkscreen, SF Mono, Monaco, monospace"
                   fill={conn.iface
                     ? "rgba(255,255,255,0.85)"
                     : "rgba(248,113,113,0.85)"}
@@ -750,7 +750,7 @@
                   text-anchor="end"
                   dominant-baseline="hanging"
                   font-size="6"
-                  font-family="SF Mono, Monaco, monospace"
+                  font-family="Silkscreen, SF Mono, Monaco, monospace"
                   fill={conn.iface
                     ? "rgba(255,255,255,0.85)"
                     : "rgba(248,113,113,0.85)"}
@@ -771,7 +771,7 @@
                   text-anchor="start"
                   dominant-baseline="auto"
                   font-size="6"
-                  font-family="SF Mono, Monaco, monospace"
+                  font-family="Silkscreen, SF Mono, Monaco, monospace"
                   fill={conn.iface
                     ? "rgba(255,255,255,0.85)"
                     : "rgba(248,113,113,0.85)"}
@@ -792,7 +792,7 @@
                   text-anchor="end"
                   dominant-baseline="auto"
                   font-size="6"
-                  font-family="SF Mono, Monaco, monospace"
+                  font-family="Silkscreen, SF Mono, Monaco, monospace"
                   fill={conn.iface
                     ? "rgba(255,255,255,0.85)"
                     : "rgba(248,113,113,0.85)"}
@@ -827,7 +827,7 @@
                     height={node.iconSize * 0.65}
                     rx="2"
                     fill="none"
-                    stroke={node.isUsed ? "#FFD700" : "#4B5563"}
+                    stroke={node.isUsed ? "#00FF41" : "#4B5563"}
                     stroke-width="1.5"
                   />
                   <!-- Screen area (memory fill container) -->
@@ -856,7 +856,7 @@
                         node.modelFillHeight}
                       width={node.iconSize - 8}
                       height={node.modelFillHeight}
-                      fill="#FFD700"
+                      fill="#00FF41"
                       filter="url(#memGlow-{filterId})"
                       class="animate-pulse-slow"
                     />
@@ -868,7 +868,7 @@
                       0.68} L {node.iconSize - 2} {node.iconSize *
                       0.78} L 2 {node.iconSize * 0.78} Z"
                     fill="none"
-                    stroke={node.isUsed ? "#FFD700" : "#4B5563"}
+                    stroke={node.isUsed ? "#00FF41" : "#4B5563"}
                     stroke-width="1.5"
                   />
                 </g>
@@ -885,7 +885,7 @@
                     height={node.iconSize - 4}
                     rx="4"
                     fill="none"
-                    stroke={node.isUsed ? "#FFD700" : "#4B5563"}
+                    stroke={node.isUsed ? "#00FF41" : "#4B5563"}
                     stroke-width="1.5"
                   />
                   <!-- Memory fill background -->
@@ -913,7 +913,7 @@
                       width={node.iconSize - 8}
                       height={(node.iconSize - 8) *
                         ((node.newPercent - node.currentPercent) / 100)}
-                      fill="#FFD700"
+                      fill="#00FF41"
                       filter="url(#memGlow-{filterId})"
                       class="animate-pulse-slow"
                     />
@@ -932,7 +932,7 @@
                     height={node.iconSize * 0.4}
                     rx="3"
                     fill="none"
-                    stroke={node.isUsed ? "#FFD700" : "#4B5563"}
+                    stroke={node.isUsed ? "#00FF41" : "#4B5563"}
                     stroke-width="1.5"
                   />
                   <!-- Memory fill background -->
@@ -962,7 +962,7 @@
                       height={node.iconSize *
                         0.36 *
                         ((node.newPercent - node.currentPercent) / 100)}
-                      fill="#FFD700"
+                      fill="#00FF41"
                       filter="url(#memGlow-{filterId})"
                       class="animate-pulse-slow"
                     />
@@ -981,8 +981,8 @@
                       0.75} {node.iconSize /
                       2},{node.iconSize} 0,{node.iconSize *
                       0.75} 0,{node.iconSize * 0.25}"
-                    fill={node.isUsed ? "rgba(255,215,0,0.1)" : "#0a0a0a"}
-                    stroke={node.isUsed ? "#FFD700" : "#4B5563"}
+                    fill={node.isUsed ? "rgba(0,255,65,0.1)" : "#0a0a0a"}
+                    stroke={node.isUsed ? "#00FF41" : "#4B5563"}
                     stroke-width="1.5"
                   />
                 </g>
@@ -993,11 +993,11 @@
                 y={node.iconSize / 2 + 12}
                 text-anchor="middle"
                 font-size="8"
-                font-family="SF Mono, Monaco, monospace"
+                font-family="Silkscreen, SF Mono, Monaco, monospace"
                 fill={node.isUsed
                   ? node.newPercent > 90
                     ? "#f87171"
-                    : "#FFD700"
+                    : "#00FF41"
                   : "#4B5563"}
               >
                 {node.newPercent.toFixed(0)}%
@@ -1014,15 +1014,15 @@
       disabled={isLaunching || !canFit}
       class="w-full py-2 text-sm font-mono tracking-wider uppercase border transition-all duration-200
 				{isLaunching
-        ? 'bg-transparent text-exo-yellow border-exo-yellow/50 cursor-wait'
+        ? 'bg-transparent text-exo-green border-exo-green/50 cursor-wait'
         : !canFit
           ? 'bg-red-500/10 text-red-400/70 border-red-500/30 cursor-not-allowed'
-          : 'bg-transparent text-exo-light-gray border-exo-light-gray/40 hover:text-exo-yellow hover:border-exo-yellow/50 cursor-pointer'}"
+          : 'bg-transparent text-exo-light-gray border-exo-light-gray/40 hover:text-exo-green hover:border-exo-green/50 cursor-pointer'}"
     >
       {#if isLaunching}
         <span class="flex items-center justify-center gap-1.5">
           <span
-            class="w-2 h-2 border border-exo-yellow border-t-transparent rounded-full animate-spin"
+            class="w-2 h-2 border border-exo-green border-t-transparent rounded-full animate-spin"
           ></span>
           LAUNCHING...
         </span>

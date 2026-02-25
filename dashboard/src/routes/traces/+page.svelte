@@ -103,7 +103,7 @@
     <div class="flex items-center justify-between gap-4 flex-wrap">
       <div>
         <h1
-          class="text-2xl font-mono tracking-[0.2em] uppercase text-exo-yellow"
+          class="text-2xl font-mono tracking-[0.2em] uppercase text-exo-green"
         >
           Traces
         </h1>
@@ -111,7 +111,7 @@
       <div class="flex items-center gap-3">
         <button
           type="button"
-          class="text-xs font-mono text-exo-light-gray hover:text-exo-yellow transition-colors uppercase border border-exo-medium-gray/40 px-2 py-1 rounded"
+          class="text-xs font-mono text-exo-light-gray hover:text-exo-green transition-colors uppercase border border-exo-medium-gray/40 px-2 py-1 rounded"
           onclick={refresh}
           disabled={loading}
         >
@@ -150,7 +150,7 @@
             <div class="min-w-0 flex-1">
               <a
                 href="#/traces/{trace.taskId}"
-                class="text-sm font-mono text-white hover:text-exo-yellow transition-colors truncate block"
+                class="text-sm font-mono text-white hover:text-exo-green transition-colors truncate block"
               >
                 {trace.taskId}
               </a>
@@ -163,20 +163,20 @@
             <div class="flex items-center gap-2 shrink-0">
               <a
                 href="#/traces/{trace.taskId}"
-                class="text-xs font-mono text-exo-light-gray hover:text-exo-yellow transition-colors uppercase border border-exo-medium-gray/40 px-2 py-1 rounded"
+                class="text-xs font-mono text-exo-light-gray hover:text-exo-green transition-colors uppercase border border-exo-medium-gray/40 px-2 py-1 rounded"
               >
                 View Stats
               </a>
               <button
                 type="button"
-                class="text-xs font-mono text-exo-light-gray hover:text-exo-yellow transition-colors uppercase border border-exo-medium-gray/40 px-2 py-1 rounded"
+                class="text-xs font-mono text-exo-light-gray hover:text-exo-green transition-colors uppercase border border-exo-medium-gray/40 px-2 py-1 rounded"
                 onclick={() => downloadTrace(trace.taskId)}
               >
                 Download
               </button>
               <button
                 type="button"
-                class="text-xs font-mono text-exo-dark-gray bg-exo-yellow hover:bg-exo-yellow/90 transition-colors uppercase px-2 py-1 rounded font-semibold"
+                class="text-xs font-mono text-exo-dark-gray bg-exo-green hover:bg-exo-green/90 transition-colors uppercase px-2 py-1 rounded font-semibold"
                 onclick={() => openInPerfetto(trace.taskId)}
               >
                 View Trace

@@ -73,7 +73,7 @@
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
-  class="filter-popover absolute right-0 top-full mt-2 w-64 bg-exo-dark-gray border border-exo-yellow/10 rounded-lg shadow-xl z-10"
+  class="filter-popover absolute right-0 top-full mt-2 w-64 bg-exo-dark-gray border border-exo-green/10 rounded-lg shadow-xl z-10"
   transition:fly={{ y: -10, duration: 200, easing: cubicOut }}
   onclick={(e) => e.stopPropagation()}
   role="dialog"
@@ -89,7 +89,7 @@
           <button
             type="button"
             class="px-2 py-1 text-xs font-mono rounded transition-colors {isSelected
-              ? 'bg-exo-yellow/20 text-exo-yellow border border-exo-yellow/30'
+              ? 'bg-exo-green/20 text-exo-green border border-exo-green/30'
               : 'bg-white/5 text-white/60 hover:bg-white/10 border border-transparent'}"
             onclick={() => toggleCapability(cap.id)}
           >
@@ -257,7 +257,7 @@
           <button
             type="button"
             class="px-2 py-1 text-xs font-mono rounded transition-colors {isSelected
-              ? 'bg-exo-yellow/20 text-exo-yellow border border-exo-yellow/30'
+              ? 'bg-exo-green/20 text-exo-green border border-exo-green/30'
               : 'bg-white/5 text-white/60 hover:bg-white/10 border border-transparent'}"
             onclick={() => selectSizeRange(range)}
           >

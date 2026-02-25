@@ -536,14 +536,14 @@
     font-size: 1.5rem;
     font-weight: 700;
     margin: 1.5rem 0 0.75rem 0;
-    color: var(--exo-yellow, #ffd700);
+    color: var(--exo-green, #00FF41);
   }
 
   .markdown-content :global(h2) {
     font-size: 1.25rem;
     font-weight: 600;
     margin: 1.25rem 0 0.5rem 0;
-    color: var(--exo-yellow, #ffd700);
+    color: var(--exo-green, #00FF41);
   }
 
   .markdown-content :global(h3) {
@@ -571,18 +571,18 @@
 
   /* Inline code */
   .markdown-content :global(.inline-code) {
-    background: rgba(255, 215, 0, 0.1);
-    color: var(--exo-yellow, #ffd700);
+    background: rgba(0, 255, 65, 0.1);
+    color: var(--exo-green, #00FF41);
     padding: 0.125rem 0.375rem;
     border-radius: 0.25rem;
     font-family:
-      ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, monospace;
+      "Silkscreen", ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, monospace;
     font-size: 0.875em;
   }
 
   /* Links */
   .markdown-content :global(a) {
-    color: var(--exo-yellow, #ffd700);
+    color: var(--exo-green, #00FF41);
     text-decoration: underline;
     text-underline-offset: 2px;
   }
@@ -614,10 +614,10 @@
 
   /* Blockquotes */
   .markdown-content :global(blockquote) {
-    border-left: 3px solid var(--exo-yellow, #ffd700);
+    border-left: 3px solid var(--exo-green, #00FF41);
     padding: 0.5rem 1rem;
     margin: 1rem 0;
-    background: rgba(255, 215, 0, 0.05);
+    background: rgba(0, 255, 65, 0.05);
     border-radius: 0 0.25rem 0.25rem 0;
   }
 
@@ -630,8 +630,8 @@
   }
 
   .markdown-content :global(th) {
-    background: rgba(255, 215, 0, 0.1);
-    border: 1px solid rgba(255, 215, 0, 0.2);
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid rgba(0, 255, 65, 0.2);
     padding: 0.5rem;
     text-align: left;
     font-weight: 600;
@@ -654,7 +654,7 @@
     margin: 1rem 0;
     border-radius: 0.5rem;
     overflow: hidden;
-    border: 1px solid rgba(255, 215, 0, 0.2);
+    border: 1px solid rgba(0, 255, 65, 0.2);
     background: rgba(0, 0, 0, 0.4);
   }
 
@@ -663,18 +663,18 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 0.75rem;
-    background: rgba(255, 215, 0, 0.05);
-    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    background: rgba(0, 255, 65, 0.05);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
   }
 
   .markdown-content :global(.code-language) {
-    color: var(--exo-yellow, #ffd700);
+    color: var(--exo-green, #00FF41);
     font-size: 0.7rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-family:
-      ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, monospace;
+      "Silkscreen", ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, monospace;
   }
 
   .markdown-content :global(.copy-code-btn) {
@@ -691,7 +691,7 @@
   }
 
   .markdown-content :global(.copy-code-btn:hover) {
-    color: var(--exo-yellow, #ffd700);
+    color: var(--exo-green, #00FF41);
   }
 
   .markdown-content :global(.copy-code-btn.copied) {
@@ -707,7 +707,7 @@
 
   .markdown-content :global(.code-block-wrapper code) {
     font-family:
-      ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, monospace;
+      "Silkscreen", ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, monospace;
     font-size: 0.8125rem;
     line-height: 1.5;
     background: transparent;
@@ -770,7 +770,7 @@
     margin: 1rem 0;
     border-radius: 0.5rem;
     overflow: hidden;
-    border: 1px solid rgba(255, 215, 0, 0.15);
+    border: 1px solid rgba(0, 255, 65, 0.15);
     background: rgba(0, 0, 0, 0.3);
     transition:
       border-color 0.2s ease,
@@ -778,8 +778,8 @@
   }
 
   .markdown-content :global(.math-display-wrapper:hover) {
-    border-color: rgba(255, 215, 0, 0.25);
-    box-shadow: 0 0 12px rgba(255, 215, 0, 0.08);
+    border-color: rgba(0, 255, 65, 0.25);
+    box-shadow: 0 0 12px rgba(0, 255, 65, 0.08);
   }
 
   /* Display math header - hidden by default, slides in on hover */
@@ -788,8 +788,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.375rem 0.75rem;
-    background: rgba(255, 215, 0, 0.03);
-    border-bottom: 1px solid rgba(255, 215, 0, 0.08);
+    background: rgba(0, 255, 65, 0.03);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.08);
     opacity: 0;
     max-height: 0;
     padding-top: 0;
@@ -808,13 +808,13 @@
   }
 
   .markdown-content :global(.math-label) {
-    color: rgba(255, 215, 0, 0.7);
+    color: rgba(0, 255, 65, 0.7);
     font-size: 0.65rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-family:
-      ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, monospace;
+      "Silkscreen", ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, monospace;
   }
 
   .markdown-content :global(.copy-math-btn) {
@@ -839,7 +839,7 @@
   }
 
   .markdown-content :global(.copy-math-btn:hover) {
-    color: var(--exo-yellow, #ffd700);
+    color: var(--exo-green, #00FF41);
   }
 
   .markdown-content :global(.copy-math-btn.copied) {
@@ -864,13 +864,13 @@
   }
 
   .markdown-content :global(.math-display-content::-webkit-scrollbar-thumb) {
-    background: rgba(255, 215, 0, 0.2);
+    background: rgba(0, 255, 65, 0.2);
     border-radius: 3px;
   }
 
   .markdown-content
     :global(.math-display-content::-webkit-scrollbar-thumb:hover) {
-    background: rgba(255, 215, 0, 0.35);
+    background: rgba(0, 255, 65, 0.35);
   }
 
   .markdown-content :global(.math-display-content .katex-display) {
@@ -891,7 +891,7 @@
   }
 
   .markdown-content :global(.math-inline:hover) {
-    background: rgba(255, 215, 0, 0.05);
+    background: rgba(0, 255, 65, 0.05);
   }
 
   /* Dark theme KaTeX overrides */
@@ -946,7 +946,7 @@
     gap: 0.375rem;
     color: #f87171;
     font-family:
-      ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, monospace;
+      "Silkscreen", ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, monospace;
     font-size: 0.875em;
     background: rgba(248, 113, 113, 0.1);
     padding: 0.25rem 0.5rem;
@@ -964,7 +964,7 @@
     margin: 1rem 0;
     padding: 1rem 1.25rem;
     background: rgba(255, 255, 255, 0.02);
-    border-left: 3px solid rgba(255, 215, 0, 0.4);
+    border-left: 3px solid rgba(0, 255, 65, 0.4);
     border-radius: 0 0.375rem 0.375rem 0;
   }
 
@@ -1000,14 +1000,14 @@
   .markdown-content :global(.latex-theorem) {
     margin: 1rem 0;
     padding: 1rem 1.25rem;
-    background: rgba(255, 215, 0, 0.03);
-    border: 1px solid rgba(255, 215, 0, 0.15);
+    background: rgba(0, 255, 65, 0.03);
+    border: 1px solid rgba(0, 255, 65, 0.15);
     border-radius: 0.375rem;
   }
 
   .markdown-content :global(.latex-theorem-header) {
     font-weight: 700;
-    color: var(--exo-yellow, #ffd700);
+    color: var(--exo-green, #00FF41);
     margin-bottom: 0.5rem;
   }
 
@@ -1033,9 +1033,9 @@
     margin: 1rem 0;
     padding: 1.5rem 2rem;
     background: rgba(255, 255, 255, 0.02);
-    border: 1px dashed rgba(255, 215, 0, 0.25);
+    border: 1px dashed rgba(0, 255, 65, 0.25);
     border-radius: 0.5rem;
-    color: rgba(255, 215, 0, 0.6);
+    color: rgba(0, 255, 65, 0.6);
     font-size: 0.875rem;
   }
 
@@ -1046,7 +1046,7 @@
 
   .markdown-content :global(.latex-diagram-text) {
     font-family:
-      ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, monospace;
+      "Silkscreen", ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, monospace;
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;

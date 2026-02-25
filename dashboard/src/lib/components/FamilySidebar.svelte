@@ -41,7 +41,7 @@
 </script>
 
 <div
-  class="flex flex-col gap-1 py-2 px-1 border-r border-exo-yellow/10 bg-exo-medium-gray/30 min-w-[64px] overflow-y-auto scrollbar-hide"
+  class="flex flex-col gap-1 py-2 px-1 border-r border-exo-green/10 bg-exo-medium-gray/30 min-w-[64px] overflow-y-auto scrollbar-hide"
 >
   <!-- All models (no filter) -->
   <button
@@ -49,13 +49,13 @@
     onclick={() => onSelect(null)}
     class="group flex flex-col items-center justify-center p-2 rounded transition-all duration-200 cursor-pointer {selectedFamily ===
     null
-      ? 'bg-exo-yellow/20 border-l-2 border-exo-yellow'
+      ? 'bg-exo-green/20 border-l-2 border-exo-green'
       : 'hover:bg-white/5 border-l-2 border-transparent'}"
     title="All models"
   >
     <svg
       class="w-5 h-5 {selectedFamily === null
-        ? 'text-exo-yellow'
+        ? 'text-exo-green'
         : 'text-white/50 group-hover:text-white/70'}"
       viewBox="0 0 24 24"
       fill="currentColor"
@@ -66,7 +66,7 @@
     </svg>
     <span
       class="text-[9px] font-mono mt-0.5 {selectedFamily === null
-        ? 'text-exo-yellow'
+        ? 'text-exo-green'
         : 'text-white/40 group-hover:text-white/60'}">All</span
     >
   </button>
@@ -78,7 +78,7 @@
       onclick={() => onSelect("favorites")}
       class="group flex flex-col items-center justify-center p-2 rounded transition-all duration-200 cursor-pointer {selectedFamily ===
       'favorites'
-        ? 'bg-exo-yellow/20 border-l-2 border-exo-yellow'
+        ? 'bg-exo-green/20 border-l-2 border-exo-green'
         : 'hover:bg-white/5 border-l-2 border-transparent'}"
       title="Show favorited models"
     >
@@ -103,19 +103,19 @@
       onclick={() => onSelect("recents")}
       class="group flex flex-col items-center justify-center p-2 rounded transition-all duration-200 cursor-pointer {selectedFamily ===
       'recents'
-        ? 'bg-exo-yellow/20 border-l-2 border-exo-yellow'
+        ? 'bg-exo-green/20 border-l-2 border-exo-green'
         : 'hover:bg-white/5 border-l-2 border-transparent'}"
       title="Recently launched models"
     >
       <FamilyLogos
         family="recents"
         class={selectedFamily === "recents"
-          ? "text-exo-yellow"
+          ? "text-exo-green"
           : "text-white/50 group-hover:text-white/70"}
       />
       <span
         class="text-[9px] font-mono mt-0.5 {selectedFamily === 'recents'
-          ? 'text-exo-yellow'
+          ? 'text-exo-green'
           : 'text-white/40 group-hover:text-white/60'}">Recent</span
       >
     </button>
@@ -144,7 +144,7 @@
     >
   </button>
 
-  <div class="h-px bg-exo-yellow/10 my-1"></div>
+  <div class="h-px bg-exo-green/10 my-1"></div>
 
   <!-- Model families -->
   {#each families as family}
@@ -153,20 +153,20 @@
       onclick={() => onSelect(family)}
       class="group flex flex-col items-center justify-center p-2 rounded transition-all duration-200 cursor-pointer {selectedFamily ===
       family
-        ? 'bg-exo-yellow/20 border-l-2 border-exo-yellow'
+        ? 'bg-exo-green/20 border-l-2 border-exo-green'
         : 'hover:bg-white/5 border-l-2 border-transparent'}"
       title={getFamilyName(family)}
     >
       <FamilyLogos
         {family}
         class={selectedFamily === family
-          ? "text-exo-yellow"
+          ? "text-exo-green"
           : "text-white/50 group-hover:text-white/70"}
       />
       <span
         class="text-[9px] font-mono mt-0.5 truncate max-w-full {selectedFamily ===
         family
-          ? 'text-exo-yellow'
+          ? 'text-exo-green'
           : 'text-white/40 group-hover:text-white/60'}"
       >
         {getFamilyName(family)}

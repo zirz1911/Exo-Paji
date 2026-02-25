@@ -355,7 +355,7 @@
     <div class="flex items-center justify-between gap-4 flex-wrap">
       <div>
         <h1
-          class="text-2xl font-mono tracking-[0.2em] uppercase text-exo-yellow"
+          class="text-2xl font-mono tracking-[0.2em] uppercase text-exo-green"
         >
           Downloads
         </h1>
@@ -366,7 +366,7 @@
       <div class="flex items-center gap-3">
         <button
           type="button"
-          class="text-xs font-mono text-exo-light-gray hover:text-exo-yellow transition-colors uppercase border border-exo-medium-gray/40 px-2 py-1 rounded"
+          class="text-xs font-mono text-exo-light-gray hover:text-exo-green transition-colors uppercase border border-exo-medium-gray/40 px-2 py-1 rounded"
           onclick={() => refreshState()}
           title="Force refresh from /state"
         >
@@ -401,7 +401,7 @@
           <thead>
             <tr class="border-b border-exo-medium-gray/30">
               <th
-                class="sticky left-0 z-10 bg-exo-black px-4 py-3 text-[11px] uppercase tracking-wider text-exo-yellow font-medium whitespace-nowrap border-r border-exo-medium-gray/20"
+                class="sticky left-0 z-10 bg-exo-black px-4 py-3 text-[11px] uppercase tracking-wider text-exo-green font-medium whitespace-nowrap border-r border-exo-medium-gray/20"
               >
                 Model
               </th>
@@ -517,14 +517,14 @@
                           cell.speed,
                         )} - ETA {formatEta(cell.etaMs)}"
                       >
-                        <span class="text-exo-yellow text-sm font-medium"
+                        <span class="text-exo-green text-sm font-medium"
                           >{clampPercent(cell.percentage).toFixed(1)}%</span
                         >
                         <div
                           class="w-16 h-2 bg-exo-black/60 rounded-sm overflow-hidden"
                         >
                           <div
-                            class="h-full bg-gradient-to-r from-exo-yellow to-exo-yellow/70 transition-all duration-300"
+                            class="h-full bg-gradient-to-r from-exo-green to-exo-green/70 transition-all duration-300"
                             style="width: {clampPercent(
                               cell.percentage,
                             ).toFixed(1)}%"
@@ -561,7 +561,7 @@
                           {#if row.shardMetadata}
                             <button
                               type="button"
-                              class="text-white/50 hover:text-exo-yellow transition-colors cursor-pointer"
+                              class="text-white/50 hover:text-exo-green transition-colors cursor-pointer"
                               onclick={() =>
                                 startDownload(col.nodeId, row.shardMetadata!)}
                               title="Resume download on this node"
@@ -587,7 +587,7 @@
                         {:else if row.shardMetadata}
                           <button
                             type="button"
-                            class="text-white/50 hover:text-exo-yellow transition-colors cursor-pointer"
+                            class="text-white/50 hover:text-exo-green transition-colors cursor-pointer"
                             onclick={() =>
                               startDownload(col.nodeId, row.shardMetadata!)}
                             title="Start download on this node"
@@ -629,7 +629,7 @@
                         {#if row.shardMetadata}
                           <button
                             type="button"
-                            class="text-white/50 hover:text-exo-yellow transition-colors cursor-pointer"
+                            class="text-white/50 hover:text-exo-green transition-colors cursor-pointer"
                             onclick={() =>
                               startDownload(col.nodeId, row.shardMetadata!)}
                             title="Retry download on this node"
@@ -661,7 +661,7 @@
                         {#if row.shardMetadata}
                           <button
                             type="button"
-                            class="text-white/50 hover:text-exo-yellow transition-colors mt-0.5 opacity-0 group-hover:opacity-100 cursor-pointer"
+                            class="text-white/50 hover:text-exo-green transition-colors mt-0.5 opacity-0 group-hover:opacity-100 cursor-pointer"
                             onclick={() =>
                               startDownload(col.nodeId, row.shardMetadata!)}
                             title="Download to this node"
@@ -703,7 +703,7 @@
     role="presentation"
   ></div>
   <div
-    class="fixed z-[60] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(80vw,400px)] bg-exo-dark-gray border border-exo-yellow/10 rounded-lg shadow-2xl p-4"
+    class="fixed z-[60] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(80vw,400px)] bg-exo-dark-gray border border-exo-green/10 rounded-lg shadow-2xl p-4"
     transition:fly={{ y: 10, duration: 200, easing: cubicOut }}
     role="dialog"
     aria-modal="true"
@@ -782,7 +782,7 @@
 
       <!-- Per-node download status -->
       {#if nodeColumns.filter((col) => (infoRow?.cells[col.nodeId]?.kind ?? "not_present") !== "not_present").length > 0}
-        <div class="mt-3 pt-3 border-t border-exo-yellow/10">
+        <div class="mt-3 pt-3 border-t border-exo-green/10">
           <div class="flex items-center gap-2 mb-1">
             <svg
               class="w-3.5 h-3.5"
@@ -811,7 +811,7 @@
                     'completed'
                       ? 'bg-green-500/10 text-green-400/80 border border-green-500/20'
                       : cellStatus.kind === 'downloading'
-                        ? 'bg-exo-yellow/10 text-exo-yellow/80 border border-exo-yellow/20'
+                        ? 'bg-exo-green/10 text-exo-green/80 border border-exo-green/20'
                         : cellStatus.kind === 'failed'
                           ? 'bg-red-500/10 text-red-400/80 border border-red-500/20'
                           : 'bg-white/5 text-white/50 border border-white/10'}"

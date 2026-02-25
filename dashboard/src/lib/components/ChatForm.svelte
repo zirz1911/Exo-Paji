@@ -322,12 +322,12 @@
 >
   <div
     class="relative command-panel rounded overflow-hidden transition-all duration-200 {isDragOver
-      ? 'ring-2 ring-exo-yellow ring-opacity-50'
+      ? 'ring-2 ring-exo-green ring-opacity-50'
       : ''}"
   >
     <!-- Top accent line -->
     <div
-      class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-exo-yellow/50 to-transparent"
+      class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-exo-green/50 to-transparent"
     ></div>
 
     <!-- Drag overlay -->
@@ -335,7 +335,7 @@
       <div
         class="absolute inset-0 bg-exo-dark-gray/80 z-10 flex items-center justify-center"
       >
-        <div class="text-exo-yellow text-sm font-mono tracking-wider uppercase">
+        <div class="text-exo-green text-sm font-mono tracking-wider uppercase">
           DROP FILES HERE
         </div>
       </div>
@@ -344,23 +344,23 @@
     <!-- Edit mode banner -->
     {#if isEditMode && currentEditingImage}
       <div
-        class="flex items-center gap-3 px-3 py-2 bg-exo-yellow/10 border-b border-exo-yellow/30"
+        class="flex items-center gap-3 px-3 py-2 bg-exo-green/10 border-b border-exo-green/30"
       >
         <img
           src={currentEditingImage.imageDataUrl}
           alt="Source for editing"
-          class="w-10 h-10 object-cover rounded border border-exo-yellow/30"
+          class="w-10 h-10 object-cover rounded border border-exo-green/30"
         />
         <div class="flex-1">
           <span
-            class="text-xs font-mono tracking-wider uppercase text-exo-yellow"
+            class="text-xs font-mono tracking-wider uppercase text-exo-green"
             >EDITING IMAGE</span
           >
         </div>
         <button
           type="button"
           onclick={() => clearEditingImage()}
-          class="px-2 py-1 text-xs font-mono tracking-wider uppercase bg-exo-medium-gray/30 text-exo-light-gray border border-exo-medium-gray/50 rounded hover:bg-exo-medium-gray/50 hover:text-exo-yellow transition-colors cursor-pointer"
+          class="px-2 py-1 text-xs font-mono tracking-wider uppercase bg-exo-medium-gray/30 text-exo-light-gray border border-exo-medium-gray/50 rounded hover:bg-exo-medium-gray/50 hover:text-exo-green transition-colors cursor-pointer"
         >
           CANCEL
         </button>
@@ -382,10 +382,10 @@
             <button
               type="button"
               onclick={() => onOpenModelPicker?.()}
-              class="w-full bg-exo-medium-gray/50 border border-exo-yellow/30 rounded pl-3 pr-8 py-1.5 text-xs font-mono text-left tracking-wide cursor-pointer transition-all duration-200 hover:border-exo-yellow/50 focus:outline-none focus:border-exo-yellow/70"
+              class="w-full bg-exo-medium-gray/50 border border-exo-green/30 rounded pl-3 pr-8 py-1.5 text-xs font-mono text-left tracking-wide cursor-pointer transition-all duration-200 hover:border-exo-green/50 focus:outline-none focus:border-exo-green/70"
             >
               {#if currentModelLabel}
-                <span class="text-exo-yellow truncate">{currentModelLabel}</span
+                <span class="text-exo-green truncate">{currentModelLabel}</span
                 >
               {:else}
                 <span class="text-exo-light-gray/50">— SELECT MODEL —</span>
@@ -395,7 +395,7 @@
               class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none"
             >
               <svg
-                class="w-3 h-3 text-exo-yellow/60"
+                class="w-3 h-3 text-exo-green/60"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -416,7 +416,7 @@
             type="button"
             onclick={() => setConversationThinking(!thinkingEnabled)}
             class="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-mono tracking-wide transition-all duration-200 flex-shrink-0 cursor-pointer border {thinkingEnabled
-              ? 'bg-exo-yellow/15 border-exo-yellow/40 text-exo-yellow'
+              ? 'bg-exo-green/15 border-exo-green/40 text-exo-green'
               : 'bg-exo-medium-gray/30 border-exo-medium-gray/50 text-exo-light-gray/60 hover:text-exo-light-gray'}"
             title={thinkingEnabled
               ? "Thinking enabled — click to disable"
@@ -445,13 +445,13 @@
             {#if currentTtft !== null}
               <span class="text-exo-light-gray">
                 <span class="text-white/70">TTFT</span>
-                <span class="text-exo-yellow">{currentTtft.toFixed(1)}ms</span>
+                <span class="text-exo-green">{currentTtft.toFixed(1)}ms</span>
               </span>
             {/if}
             {#if currentTps !== null}
               <span class="text-exo-light-gray">
                 <span class="text-white/70">TPS</span>
-                <span class="text-exo-yellow">{currentTps.toFixed(1)}</span>
+                <span class="text-exo-green">{currentTps.toFixed(1)}</span>
                 <span class="text-white/60">tok/s</span>
                 <span class="text-white/50"
                   >({(1000 / currentTps).toFixed(1)} ms/tok)</span
@@ -482,7 +482,7 @@
         type="button"
         onclick={openFilePicker}
         disabled={loading}
-        class="flex items-center justify-center w-7 h-7 rounded text-exo-light-gray hover:text-exo-yellow transition-all disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0 cursor-pointer"
+        class="flex items-center justify-center w-7 h-7 rounded text-exo-light-gray hover:text-exo-green transition-all disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0 cursor-pointer"
         title="Attach file"
       >
         <svg
@@ -501,7 +501,7 @@
       </button>
 
       <!-- Terminal prompt -->
-      <span class="text-exo-yellow text-sm font-bold flex-shrink-0 leading-7"
+      <span class="text-exo-green text-sm font-bold flex-shrink-0 leading-7"
         >▶</span
       >
 
@@ -548,7 +548,7 @@
           class="px-2.5 sm:px-4 py-1.5 sm:py-2 rounded text-xs sm:text-xs tracking-[0.1em] sm:tracking-[0.15em] uppercase font-medium transition-all duration-200 whitespace-nowrap
 					{!canSend || isEditOnlyWithoutImage
             ? 'bg-exo-medium-gray/50 text-exo-light-gray cursor-not-allowed'
-            : 'bg-exo-yellow text-exo-black hover:bg-exo-yellow-darker hover:shadow-[0_0_20px_rgba(255,215,0,0.3)]'}"
+            : 'bg-exo-green text-exo-black hover:bg-exo-green-darker hover:shadow-[0_0_20px_rgba(0,255,65,0.3)]'}"
           aria-label={shouldShowEditMode
             ? "Edit image"
             : isImageModel()
@@ -613,7 +613,7 @@
 
     <!-- Bottom accent line -->
     <div
-      class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-exo-yellow/30 to-transparent"
+      class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-exo-green/30 to-transparent"
     ></div>
   </div>
 

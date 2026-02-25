@@ -187,8 +187,8 @@
           bind:this={sizeButtonRef}
           type="button"
           onclick={() => (isSizeDropdownOpen = !isSizeDropdownOpen)}
-          class="bg-exo-medium-gray/50 border border-exo-yellow/30 rounded pl-2 pr-6 py-1 text-xs font-mono text-exo-yellow cursor-pointer transition-all duration-200 hover:border-exo-yellow/50 focus:outline-none focus:border-exo-yellow/70 {isSizeDropdownOpen
-            ? 'border-exo-yellow/70'
+          class="bg-exo-medium-gray/50 border border-exo-green/30 rounded pl-2 pr-6 py-1 text-xs font-mono text-exo-green cursor-pointer transition-all duration-200 hover:border-exo-green/50 focus:outline-none focus:border-exo-green/70 {isSizeDropdownOpen
+            ? 'border-exo-green/70'
             : ''}"
         >
           {params.size.toUpperCase()}
@@ -199,7 +199,7 @@
             : ''}"
         >
           <svg
-            class="w-3 h-3 text-exo-yellow/60"
+            class="w-3 h-3 text-exo-green/60"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -225,7 +225,7 @@
 
         <!-- Dropdown Panel - fixed positioning to escape overflow:hidden -->
         <div
-          class="fixed bg-exo-dark-gray border border-exo-yellow/30 rounded shadow-lg shadow-black/50 z-[9999] max-h-48 overflow-y-auto overflow-x-hidden min-w-max"
+          class="fixed bg-exo-dark-gray border border-exo-green/30 rounded shadow-lg shadow-black/50 z-[9999] max-h-48 overflow-y-auto overflow-x-hidden min-w-max"
           style="bottom: calc(100vh - {sizeDropdownPosition()
             .top}px + 4px); left: {sizeDropdownPosition().left}px;"
         >
@@ -236,8 +236,8 @@
                 onclick={() => selectSize(size)}
                 class="w-full px-3 py-1.5 text-left text-xs font-mono tracking-wide transition-colors duration-100 flex items-center gap-2 {params.size ===
                 size
-                  ? 'bg-transparent text-exo-yellow'
-                  : 'text-exo-light-gray hover:text-exo-yellow'}"
+                  ? 'bg-transparent text-exo-green'
+                  : 'text-exo-light-gray hover:text-exo-green'}"
               >
                 {#if params.size === size}
                   <svg
@@ -272,8 +272,8 @@
           bind:this={qualityButtonRef}
           type="button"
           onclick={() => (isQualityDropdownOpen = !isQualityDropdownOpen)}
-          class="bg-exo-medium-gray/50 border border-exo-yellow/30 rounded pl-2 pr-6 py-1 text-xs font-mono text-exo-yellow cursor-pointer transition-all duration-200 hover:border-exo-yellow/50 focus:outline-none focus:border-exo-yellow/70 {isQualityDropdownOpen
-            ? 'border-exo-yellow/70'
+          class="bg-exo-medium-gray/50 border border-exo-green/30 rounded pl-2 pr-6 py-1 text-xs font-mono text-exo-green cursor-pointer transition-all duration-200 hover:border-exo-green/50 focus:outline-none focus:border-exo-green/70 {isQualityDropdownOpen
+            ? 'border-exo-green/70'
             : ''}"
         >
           {params.quality.toUpperCase()}
@@ -284,7 +284,7 @@
             : ''}"
         >
           <svg
-            class="w-3 h-3 text-exo-yellow/60"
+            class="w-3 h-3 text-exo-green/60"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -310,7 +310,7 @@
 
         <!-- Dropdown Panel - fixed positioning to escape overflow:hidden -->
         <div
-          class="fixed bg-exo-dark-gray border border-exo-yellow/30 rounded shadow-lg shadow-black/50 z-[9999] max-h-48 overflow-y-auto overflow-x-hidden min-w-max"
+          class="fixed bg-exo-dark-gray border border-exo-green/30 rounded shadow-lg shadow-black/50 z-[9999] max-h-48 overflow-y-auto overflow-x-hidden min-w-max"
           style="bottom: calc(100vh - {qualityDropdownPosition()
             .top}px + 4px); left: {qualityDropdownPosition().left}px;"
         >
@@ -321,8 +321,8 @@
                 onclick={() => selectQuality(quality)}
                 class="w-full px-3 py-1.5 text-left text-xs font-mono tracking-wide transition-colors duration-100 flex items-center gap-2 {params.quality ===
                 quality
-                  ? 'bg-transparent text-exo-yellow'
-                  : 'text-exo-light-gray hover:text-exo-yellow'}"
+                  ? 'bg-transparent text-exo-green'
+                  : 'text-exo-light-gray hover:text-exo-green'}"
               >
                 {#if params.quality === quality}
                   <svg
@@ -352,15 +352,15 @@
       <span class="text-xs text-exo-light-gray uppercase tracking-wider"
         >FORMAT:</span
       >
-      <div class="flex rounded overflow-hidden border border-exo-yellow/30">
+      <div class="flex rounded overflow-hidden border border-exo-green/30">
         {#each outputFormatOptions as format}
           <button
             type="button"
             onclick={() => handleOutputFormatChange(format)}
             class="px-2 py-1 text-xs font-mono uppercase transition-all duration-200 cursor-pointer {params.outputFormat ===
             format
-              ? 'bg-exo-yellow text-exo-black'
-              : 'bg-exo-medium-gray/50 text-exo-light-gray hover:text-exo-yellow'}"
+              ? 'bg-exo-green text-exo-black'
+              : 'bg-exo-medium-gray/50 text-exo-light-gray hover:text-exo-green'}"
           >
             {format}
           </button>
@@ -379,7 +379,7 @@
           min="1"
           value={params.numImages}
           oninput={handleNumImagesChange}
-          class="w-12 bg-exo-medium-gray/50 border border-exo-yellow/30 rounded px-2 py-1 text-xs font-mono text-exo-yellow text-center transition-all duration-200 hover:border-exo-yellow/50 focus:outline-none focus:border-exo-yellow/70"
+          class="w-12 bg-exo-medium-gray/50 border border-exo-green/30 rounded px-2 py-1 text-xs font-mono text-exo-green text-center transition-all duration-200 hover:border-exo-green/50 focus:outline-none focus:border-exo-green/70"
         />
       </div>
     {/if}
@@ -393,8 +393,8 @@
         type="button"
         onclick={() => handleStreamChange(!params.stream)}
         class="w-8 h-4 rounded-full transition-all duration-200 cursor-pointer relative {params.stream
-          ? 'bg-exo-yellow'
-          : 'bg-exo-medium-gray/50 border border-exo-yellow/30'}"
+          ? 'bg-exo-green'
+          : 'bg-exo-medium-gray/50 border border-exo-green/30'}"
         title={params.stream ? "Streaming enabled" : "Streaming disabled"}
       >
         <div
@@ -416,7 +416,7 @@
           min="0"
           value={params.partialImages}
           oninput={handlePartialImagesChange}
-          class="w-12 bg-exo-medium-gray/50 border border-exo-yellow/30 rounded px-2 py-1 text-xs font-mono text-exo-yellow text-center transition-all duration-200 hover:border-exo-yellow/50 focus:outline-none focus:border-exo-yellow/70"
+          class="w-12 bg-exo-medium-gray/50 border border-exo-green/30 rounded px-2 py-1 text-xs font-mono text-exo-green text-center transition-all duration-200 hover:border-exo-green/50 focus:outline-none focus:border-exo-green/70"
         />
       </div>
     {/if}
@@ -427,15 +427,15 @@
         <span class="text-xs text-exo-light-gray uppercase tracking-wider"
           >FIDELITY:</span
         >
-        <div class="flex rounded overflow-hidden border border-exo-yellow/30">
+        <div class="flex rounded overflow-hidden border border-exo-green/30">
           {#each inputFidelityOptions as fidelity}
             <button
               type="button"
               onclick={() => handleInputFidelityChange(fidelity)}
               class="px-2 py-1 text-xs font-mono uppercase transition-all duration-200 cursor-pointer {params.inputFidelity ===
               fidelity
-                ? 'bg-exo-yellow text-exo-black'
-                : 'bg-exo-medium-gray/50 text-exo-light-gray hover:text-exo-yellow'}"
+                ? 'bg-exo-green text-exo-black'
+                : 'bg-exo-medium-gray/50 text-exo-light-gray hover:text-exo-green'}"
               title={fidelity === "low"
                 ? "More creative variation"
                 : "Closer to original"}
@@ -456,8 +456,8 @@
       onclick={() => (showAdvanced = !showAdvanced)}
       class="flex items-center gap-1 text-xs font-mono tracking-wider uppercase transition-colors duration-200 {showAdvanced ||
       hasAdvancedParams
-        ? 'text-exo-yellow'
-        : 'text-exo-light-gray hover:text-exo-yellow'}"
+        ? 'text-exo-green'
+        : 'text-exo-light-gray hover:text-exo-green'}"
     >
       <span>ADVANCED</span>
       <svg
@@ -476,7 +476,7 @@
         />
       </svg>
       {#if hasAdvancedParams && !showAdvanced}
-        <span class="w-1.5 h-1.5 rounded-full bg-exo-yellow"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-exo-green"></span>
       {/if}
     </button>
   </div>
@@ -497,7 +497,7 @@
             value={params.seed ?? ""}
             oninput={handleSeedChange}
             placeholder="Random"
-            class="w-24 bg-exo-medium-gray/50 border border-exo-yellow/30 rounded px-2 py-1 text-xs font-mono text-exo-yellow placeholder:text-exo-light-gray/50 transition-all duration-200 hover:border-exo-yellow/50 focus:outline-none focus:border-exo-yellow/70"
+            class="w-24 bg-exo-medium-gray/50 border border-exo-green/30 rounded px-2 py-1 text-xs font-mono text-exo-green placeholder:text-exo-light-gray/50 transition-all duration-200 hover:border-exo-green/50 focus:outline-none focus:border-exo-green/70"
           />
         </div>
 
@@ -514,16 +514,16 @@
               max="100"
               value={params.numInferenceSteps ?? 50}
               oninput={handleStepsChange}
-              class="flex-1 h-1 bg-exo-medium-gray/50 rounded appearance-none cursor-pointer accent-exo-yellow"
+              class="flex-1 h-1 bg-exo-medium-gray/50 rounded appearance-none cursor-pointer accent-exo-green"
             />
-            <span class="text-xs font-mono text-exo-yellow w-8 text-right">
+            <span class="text-xs font-mono text-exo-green w-8 text-right">
               {params.numInferenceSteps ?? "--"}
             </span>
             {#if params.numInferenceSteps !== null}
               <button
                 type="button"
                 onclick={clearSteps}
-                class="text-exo-light-gray hover:text-exo-yellow transition-colors"
+                class="text-exo-light-gray hover:text-exo-green transition-colors"
                 title="Clear"
               >
                 <svg
@@ -559,16 +559,16 @@
             step="0.5"
             value={params.guidance ?? 7.5}
             oninput={handleGuidanceChange}
-            class="flex-1 h-1 bg-exo-medium-gray/50 rounded appearance-none cursor-pointer accent-exo-yellow"
+            class="flex-1 h-1 bg-exo-medium-gray/50 rounded appearance-none cursor-pointer accent-exo-green"
           />
-          <span class="text-xs font-mono text-exo-yellow w-8 text-right">
+          <span class="text-xs font-mono text-exo-green w-8 text-right">
             {params.guidance !== null ? params.guidance.toFixed(1) : "--"}
           </span>
           {#if params.guidance !== null}
             <button
               type="button"
               onclick={clearGuidance}
-              class="text-exo-light-gray hover:text-exo-yellow transition-colors"
+              class="text-exo-light-gray hover:text-exo-green transition-colors"
               title="Clear"
             >
               <svg
@@ -602,16 +602,16 @@
             max="100"
             value={params.numSyncSteps ?? 1}
             oninput={handleNumSyncStepsChange}
-            class="flex-1 h-1 bg-exo-medium-gray/50 rounded appearance-none cursor-pointer accent-exo-yellow"
+            class="flex-1 h-1 bg-exo-medium-gray/50 rounded appearance-none cursor-pointer accent-exo-green"
           />
-          <span class="text-xs font-mono text-exo-yellow w-8 text-right">
+          <span class="text-xs font-mono text-exo-green w-8 text-right">
             {params.numSyncSteps ?? "--"}
           </span>
           {#if params.numSyncSteps !== null}
             <button
               type="button"
               onclick={clearNumSyncSteps}
-              class="text-exo-light-gray hover:text-exo-yellow transition-colors"
+              class="text-exo-light-gray hover:text-exo-green transition-colors"
               title="Clear"
             >
               <svg
@@ -642,7 +642,7 @@
           oninput={handleNegativePromptChange}
           placeholder="Things to avoid in the image..."
           rows={2}
-          class="w-full bg-exo-medium-gray/50 border border-exo-yellow/30 rounded px-2 py-1.5 text-xs font-mono text-exo-yellow placeholder:text-exo-light-gray/50 resize-none transition-all duration-200 hover:border-exo-yellow/50 focus:outline-none focus:border-exo-yellow/70"
+          class="w-full bg-exo-medium-gray/50 border border-exo-green/30 rounded px-2 py-1.5 text-xs font-mono text-exo-green placeholder:text-exo-light-gray/50 resize-none transition-all duration-200 hover:border-exo-green/50 focus:outline-none focus:border-exo-green/70"
         ></textarea>
       </div>
 
@@ -651,7 +651,7 @@
         <button
           type="button"
           onclick={handleReset}
-          class="text-xs font-mono tracking-wider uppercase text-exo-light-gray hover:text-exo-yellow transition-colors duration-200"
+          class="text-xs font-mono tracking-wider uppercase text-exo-light-gray hover:text-exo-green transition-colors duration-200"
         >
           RESET TO DEFAULTS
         </button>
@@ -668,7 +668,7 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #ffd700;
+    background: #00FF41;
     cursor: pointer;
     border: none;
   }
@@ -677,7 +677,7 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #ffd700;
+    background: #00FF41;
     cursor: pointer;
     border: none;
   }

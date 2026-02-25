@@ -37,7 +37,7 @@
     <div class="absolute left-6 top-1/2 -translate-y-1/2">
       <button
         onclick={handleToggleSidebar}
-        class="p-2 rounded border border-exo-light-gray/30 hover:border-exo-yellow/50 hover:bg-exo-medium-gray/30 transition-colors cursor-pointer"
+        class="p-2 rounded border border-exo-light-gray/30 hover:border-exo-green/50 hover:bg-exo-medium-gray/30 transition-colors cursor-pointer"
         title={sidebarVisible ? "Hide sidebar" : "Show sidebar"}
         aria-label={sidebarVisible
           ? "Hide conversation sidebar"
@@ -46,7 +46,7 @@
       >
         <svg
           class="w-5 h-5 {sidebarVisible
-            ? 'text-exo-yellow'
+            ? 'text-exo-green'
             : 'text-exo-light-gray'}"
           fill="none"
           viewBox="0 0 24 24"
@@ -80,11 +80,7 @@
     title={showHome ? "Go to home" : ""}
     disabled={!showHome}
   >
-    <img
-      src="/exo-logo.png"
-      alt="EXO"
-      class="h-18 drop-shadow-[0_0_4px_rgba(255,215,0,0.3)]"
-    />
+    <span class="text-2xl font-bold text-exo-green glow-text">EXO-PAJI</span>
   </button>
 
   <!-- Right: Home + Downloads -->
@@ -95,7 +91,7 @@
     {#if showHome}
       <button
         onclick={handleHome}
-        class="text-sm text-white/70 hover:text-exo-yellow transition-colors tracking-wider uppercase flex items-center gap-2 cursor-pointer"
+        class="text-sm text-white/70 hover:text-exo-green transition-colors tracking-wider uppercase flex items-center gap-2 cursor-pointer"
         title="Back to topology view"
       >
         <svg
@@ -116,7 +112,7 @@
     {/if}
     <a
       href="/#/downloads"
-      class="text-sm text-white/70 hover:text-exo-yellow transition-colors tracking-wider uppercase flex items-center gap-2 cursor-pointer"
+      class="text-sm text-white/70 hover:text-exo-green transition-colors tracking-wider uppercase flex items-center gap-2 cursor-pointer"
       title="View downloads overview"
     >
       {#if downloadProgress}

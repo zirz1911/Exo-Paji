@@ -162,7 +162,7 @@
     <div class="flex items-center justify-between gap-4 flex-wrap">
       <div>
         <h1
-          class="text-2xl font-mono tracking-[0.2em] uppercase text-exo-yellow"
+          class="text-2xl font-mono tracking-[0.2em] uppercase text-exo-green"
         >
           Trace
         </h1>
@@ -173,13 +173,13 @@
       <div class="flex items-center gap-3">
         <a
           href="#/traces"
-          class="text-xs font-mono text-exo-light-gray hover:text-exo-yellow transition-colors uppercase border border-exo-medium-gray/40 px-3 py-1.5 rounded"
+          class="text-xs font-mono text-exo-light-gray hover:text-exo-green transition-colors uppercase border border-exo-medium-gray/40 px-3 py-1.5 rounded"
         >
           All Traces
         </a>
         <button
           type="button"
-          class="text-xs font-mono text-exo-light-gray hover:text-exo-yellow transition-colors uppercase border border-exo-medium-gray/40 px-3 py-1.5 rounded"
+          class="text-xs font-mono text-exo-light-gray hover:text-exo-green transition-colors uppercase border border-exo-medium-gray/40 px-3 py-1.5 rounded"
           onclick={downloadTrace}
           disabled={loading || !!error}
         >
@@ -187,7 +187,7 @@
         </button>
         <button
           type="button"
-          class="text-xs font-mono text-exo-dark-gray bg-exo-yellow hover:bg-exo-yellow/90 transition-colors uppercase px-3 py-1.5 rounded font-semibold"
+          class="text-xs font-mono text-exo-dark-gray bg-exo-green hover:bg-exo-green/90 transition-colors uppercase px-3 py-1.5 rounded font-semibold"
           onclick={openInPerfetto}
           disabled={loading || !!error}
         >
@@ -218,7 +218,7 @@
         >
           Summary
         </h2>
-        <div class="text-3xl font-mono text-exo-yellow">
+        <div class="text-3xl font-mono text-exo-green">
           {formatDuration(stats.totalWallTimeUs)}
         </div>
         <div class="text-xs text-exo-light-gray">Total wall time</div>
@@ -242,7 +242,7 @@
                 <div class="flex items-center justify-between">
                   <span class="text-sm font-mono text-white">{phase.name}</span>
                   <span class="text-sm font-mono">
-                    <span class="text-exo-yellow"
+                    <span class="text-exo-green"
                       >{formatDuration(normalizedTotal)}</span
                     >
                     <span class="text-exo-light-gray ml-2">
@@ -279,7 +279,7 @@
                         class="relative h-1.5 bg-exo-black/60 rounded-sm overflow-hidden"
                       >
                         <div
-                          class="absolute inset-y-0 left-0 bg-gradient-to-r from-exo-yellow to-exo-yellow/70 transition-all duration-300"
+                          class="absolute inset-y-0 left-0 bg-gradient-to-r from-exo-green to-exo-green/70 transition-all duration-300"
                           style="width: {pct}"
                         ></div>
                       </div>
@@ -309,7 +309,7 @@
               <div
                 class="rounded border border-exo-medium-gray/20 bg-exo-dark-gray/60 p-3 space-y-3"
               >
-                <div class="text-sm font-mono text-exo-yellow">
+                <div class="text-sm font-mono text-exo-green">
                   Rank {rank}
                 </div>
                 <div class="space-y-2">

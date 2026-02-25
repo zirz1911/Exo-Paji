@@ -346,7 +346,7 @@
   const titleOpacity = tweened(0, { duration: 500, easing: cubicOut });
   const subtitleOpacity = tweened(0, { duration: 500, easing: cubicOut });
 
-  // ── Step 1: "Your EXO Network" — show real topology ──
+  // ── Step 1: "Your EXO-PAJI Network" — show real topology ──
   $effect(() => {
     if (onboardingStep === 1) {
       showContinueButton = false;
@@ -3206,12 +3206,12 @@
             <button
               type="button"
               onclick={() => copyToClipboard(disableCmd)}
-              class="w-full flex items-center gap-2 text-[10px] font-mono bg-exo-black/60 px-2 py-1.5 rounded text-exo-yellow break-all text-left hover:bg-exo-black/80 transition-colors cursor-pointer group/copy"
+              class="w-full flex items-center gap-2 text-[10px] font-mono bg-exo-black/60 px-2 py-1.5 rounded text-exo-green break-all text-left hover:bg-exo-black/80 transition-colors cursor-pointer group/copy"
               title="Click to copy"
             >
               <span class="flex-1">{disableCmd}</span>
               <svg
-                class="w-3.5 h-3.5 flex-shrink-0 text-white/40 group-hover/copy:text-exo-yellow transition-colors"
+                class="w-3.5 h-3.5 flex-shrink-0 text-white/40 group-hover/copy:text-exo-green transition-colors"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -3461,7 +3461,7 @@
                   y="52"
                   text-anchor="middle"
                   fill="rgba(255,255,255,0.25)"
-                  style="font-size:7px;font-family:ui-monospace,monospace;"
+                  style="font-size:7px;font-family:Silkscreen,ui-monospace,monospace;"
                   >TB5</text
                 >
                 <!-- TB5 port 2 -->
@@ -3480,7 +3480,7 @@
                   y="52"
                   text-anchor="middle"
                   fill="rgba(255,255,255,0.25)"
-                  style="font-size:7px;font-family:ui-monospace,monospace;"
+                  style="font-size:7px;font-family:Silkscreen,ui-monospace,monospace;"
                   >TB5</text
                 >
                 <!-- TB5 port 3 -->
@@ -3499,7 +3499,7 @@
                   y="52"
                   text-anchor="middle"
                   fill="rgba(255,255,255,0.25)"
-                  style="font-size:7px;font-family:ui-monospace,monospace;"
+                  style="font-size:7px;font-family:Silkscreen,ui-monospace,monospace;"
                   >TB5</text
                 >
                 <!-- TB5 port 4: INCOMPATIBLE (en2) — equally spaced with ports 1-3 -->
@@ -3536,7 +3536,7 @@
                   y="52"
                   text-anchor="middle"
                   fill="rgba(239,68,68,0.6)"
-                  style="font-size:7px;font-family:ui-monospace,monospace;font-weight:600;"
+                  style="font-size:7px;font-family:Silkscreen,ui-monospace,monospace;font-weight:600;"
                   >en2</text
                 >
                 <!-- Ethernet port -->
@@ -3565,7 +3565,7 @@
                   y="52"
                   text-anchor="middle"
                   fill="rgba(255,255,255,0.25)"
-                  style="font-size:7px;font-family:ui-monospace,monospace;"
+                  style="font-size:7px;font-family:Silkscreen,ui-monospace,monospace;"
                   >ETH</text
                 >
                 <!-- Green checkmarks on working ports -->
@@ -3772,28 +3772,28 @@
         >
           <!-- Logo + Step title -->
           <div class="text-center mb-8">
-            <!-- Logo — smoothly shrinks away when leaving step 1 -->
+            <!-- Logo text — smoothly shrinks away when leaving step 1 -->
             <div
               style="opacity: {$logoOpacity}; max-height: {$logoOpacity *
                 80}px; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);"
             >
-              <img src="/exo-logo.png" alt="exo" class="w-36 mx-auto mb-10" />
+              <h1 class="text-6xl font-bold text-exo-green glow-text mb-10">EXO-PAJI</h1>
             </div>
 
             <!-- Title — single element, text updates instantly -->
             <h1
               class="text-2xl font-light text-white/90 tracking-wide"
-              style="opacity: {$titleOpacity}; font-family: -apple-system, 'SF Pro Display', system-ui, sans-serif; letter-spacing: 0.02em;"
+              style="opacity: {$titleOpacity}; font-family: 'Silkscreen', -apple-system, 'SF Pro Display', system-ui, sans-serif; letter-spacing: 0.02em;"
             >
               {onboardingStep === 1
-                ? "EXO connects all your devices into an AI supercomputer."
+                ? "EXO-PAJI connects all your devices into an AI supercomputer."
                 : stepTitle}
             </h1>
 
             <!-- Subtitle — uses tweened opacity, reserves space to prevent layout shift -->
             <p
               class="text-sm mt-2 text-white/40 max-w-md mx-auto"
-              style="opacity: {$subtitleOpacity}; font-family: -apple-system, 'SF Pro Display', system-ui, sans-serif; font-weight: 300; min-height: 1.5em;"
+              style="opacity: {$subtitleOpacity}; font-family: 'Silkscreen', -apple-system, 'SF Pro Display', system-ui, sans-serif; font-weight: 300; min-height: 1.5em;"
             >
               {#if onboardingStep === 2}
                 &nbsp;
@@ -3815,9 +3815,9 @@
             <!-- Device count label — fades in on step 1, fades out on step 2 -->
             <p
               class="absolute left-0 right-0 text-center text-lg text-white/50 font-light tracking-wide z-10"
-              style="top: 20px; opacity: {$deviceCountOpacity}; font-family: -apple-system, 'SF Pro Display', system-ui, sans-serif; pointer-events: none;"
+              style="top: 20px; opacity: {$deviceCountOpacity}; font-family: 'Silkscreen', -apple-system, 'SF Pro Display', system-ui, sans-serif; pointer-events: none;"
             >
-              Your EXO Network
+              Your EXO-PAJI Network
             </p>
 
             <!-- Step 1: Real topology graph -->
@@ -3859,7 +3859,7 @@
                   y="-105"
                   text-anchor="middle"
                   fill="rgba(255,255,255,0.9)"
-                  style="font-size: 15px; font-family: -apple-system, 'SF Pro Display', system-ui, sans-serif; font-weight: 500; letter-spacing: 0.01em;"
+                  style="font-size: 15px; font-family: 'Silkscreen', -apple-system, 'SF Pro Display', system-ui, sans-serif; font-weight: 500; letter-spacing: 0.01em;"
                 >
                   {userDeviceInfo.name}
                 </text>
@@ -3867,9 +3867,9 @@
                   x="0"
                   y="105"
                   text-anchor="middle"
-                  style="font-size: 14px; font-family: 'SF Mono', ui-monospace, monospace;"
+                  style="font-size: 14px; font-family: 'Silkscreen', 'SF Mono', ui-monospace, monospace;"
                 >
-                  <tspan fill="rgba(255,215,0,0.9)"
+                  <tspan fill="rgba(0,255,65,0.9)"
                     >{userDeviceInfo.memoryGB}</tspan
                   ><tspan fill="rgba(255,255,255,0.4)">{" "}GB</tspan>
                 </text>
@@ -3905,7 +3905,7 @@
                   y="-105"
                   text-anchor="middle"
                   fill="rgba(255,255,255,0.9)"
-                  style="font-size: 15px; font-family: -apple-system, 'SF Pro Display', system-ui, sans-serif; font-weight: 500; letter-spacing: 0.01em;"
+                  style="font-size: 15px; font-family: 'Silkscreen', -apple-system, 'SF Pro Display', system-ui, sans-serif; font-weight: 500; letter-spacing: 0.01em;"
                 >
                   Mac Studio
                 </text>
@@ -3913,9 +3913,9 @@
                   x="0"
                   y="105"
                   text-anchor="middle"
-                  style="font-size: 14px; font-family: 'SF Mono', ui-monospace, monospace;"
+                  style="font-size: 14px; font-family: 'Silkscreen', 'SF Mono', ui-monospace, monospace;"
                 >
-                  <tspan fill="rgba(255,215,0,0.9)">{SIMULATED_STUDIO_GB}</tspan
+                  <tspan fill="rgba(0,255,65,0.9)">{SIMULATED_STUDIO_GB}</tspan
                   ><tspan fill="rgba(255,255,255,0.4)">{" "}GB</tspan>
                 </text>
                 <text
@@ -3923,7 +3923,7 @@
                   y="120"
                   text-anchor="middle"
                   fill="rgba(255,255,255,0.2)"
-                  style="font-size: 9px; font-family: -apple-system, 'SF Pro Display', system-ui, sans-serif; font-style: italic;"
+                  style="font-size: 9px; font-family: 'Silkscreen', -apple-system, 'SF Pro Display', system-ui, sans-serif; font-style: italic;"
                 >
                   (example)
                 </text>
@@ -3984,8 +3984,8 @@
                 x={($device1X + $device2X) / 2}
                 y={130}
                 text-anchor="middle"
-                fill="rgba(255,215,0,0.7)"
-                style="font-size: 14px; font-family: 'SF Mono', ui-monospace, monospace; font-weight: 500; letter-spacing: 0.02em;"
+                fill="rgba(0,255,65,0.7)"
+                style="font-size: 14px; font-family: 'Silkscreen', 'SF Mono', ui-monospace, monospace; font-weight: 500; letter-spacing: 0.02em;"
                 opacity={$combinedLabelOpacity}
               >
                 {onboardingCombinedGB} GB combined
@@ -4041,7 +4041,7 @@
                   fill="rgba({yellowR},{yellowG},{yellowB},{0.5 *
                     headerProgress})"
                   opacity={headerProgress}
-                  style="font-size: 10px; font-family: -apple-system, 'SF Pro Display', system-ui, sans-serif; font-weight: 500; letter-spacing: 0.1em;"
+                  style="font-size: 10px; font-family: 'Silkscreen', -apple-system, 'SF Pro Display', system-ui, sans-serif; font-weight: 500; letter-spacing: 0.1em;"
                 >
                   NEW MODELS UNLOCKED
                 </text>
@@ -4091,7 +4091,7 @@
                         text-anchor="middle"
                         dominant-baseline="middle"
                         fill="rgba(255,255,255,{0.5 + 0.3 * progress})"
-                        style="font-size: 10px; font-family: 'SF Mono', ui-monospace, monospace; font-weight: 500;"
+                        style="font-size: 10px; font-family: 'Silkscreen', 'SF Mono', ui-monospace, monospace; font-weight: 500;"
                       >
                         {modelName}
                       </text>
@@ -4102,7 +4102,7 @@
                           text-anchor="middle"
                           dominant-baseline="middle"
                           fill="rgba(255,255,255,{0.15 + 0.15 * progress})"
-                          style="font-size: 8px; font-family: 'SF Mono', ui-monospace, monospace; font-weight: 400;"
+                          style="font-size: 8px; font-family: 'Silkscreen', 'SF Mono', ui-monospace, monospace; font-weight: 400;"
                         >
                           {modelSize} GB
                         </text>
@@ -4139,7 +4139,7 @@
                       y="5"
                       text-anchor="middle"
                       fill="rgba(220,180,40,0.9)"
-                      style="font-size: 12px; font-family: -apple-system, system-ui, sans-serif; font-weight: 500;"
+                      style="font-size: 12px; font-family: 'Silkscreen', -apple-system, system-ui, sans-serif; font-weight: 500;"
                     >
                       LLM
                     </text>
@@ -4171,7 +4171,7 @@
                       y="4"
                       text-anchor="middle"
                       fill="rgba(220,180,40,0.75)"
-                      style="font-size: 11px; font-family: -apple-system, system-ui, sans-serif;"
+                      style="font-size: 11px; font-family: 'Silkscreen', -apple-system, system-ui, sans-serif;"
                     >
                       Shard 1/2
                     </text>
@@ -4197,7 +4197,7 @@
                       y="4"
                       text-anchor="middle"
                       fill="rgba(220,180,40,0.75)"
-                      style="font-size: 11px; font-family: -apple-system, system-ui, sans-serif;"
+                      style="font-size: 11px; font-family: 'Silkscreen', -apple-system, system-ui, sans-serif;"
                     >
                       Shard 2/2
                     </text>
@@ -4221,12 +4221,12 @@
               type="button"
               onclick={() =>
                 advanceStep(onboardingStep < 4 ? onboardingStep + 1 : 6)}
-              class="inline-flex items-center gap-2.5 px-10 py-3.5 bg-exo-yellow text-exo-black text-sm font-semibold rounded-full cursor-pointer"
-              style="transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.2s ease; font-family: -apple-system, 'SF Pro Display', system-ui, sans-serif; letter-spacing: 0.02em;"
+              class="inline-flex items-center gap-2.5 px-10 py-3.5 bg-exo-green text-exo-black text-sm font-semibold rounded-full cursor-pointer"
+              style="transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.2s ease; font-family: 'Silkscreen', -apple-system, 'SF Pro Display', system-ui, sans-serif; letter-spacing: 0.02em;"
               onmouseenter={(e) => {
                 e.currentTarget.style.filter = "brightness(1.08)";
                 e.currentTarget.style.boxShadow =
-                  "0 0 30px rgba(255,215,0,0.2)";
+                  "0 0 30px rgba(0,255,65,0.2)";
               }}
               onmouseleave={(e) => {
                 e.currentTarget.style.filter = "brightness(1)";
@@ -4294,7 +4294,7 @@
                   type="button"
                   onclick={() => onboardingLaunchModel(model.id)}
                   class="w-full flex items-center justify-between gap-4 px-5 py-4 rounded-xl border transition-all duration-200 cursor-pointer {fitsNow
-                    ? 'border-white/10 bg-white/5 hover:border-exo-yellow/50 hover:bg-exo-yellow/5'
+                    ? 'border-white/10 bg-white/5 hover:border-exo-green/50 hover:bg-exo-green/5'
                     : 'border-white/10 bg-white/[0.02] hover:border-white/20 opacity-60'}"
                 >
                   <div class="flex flex-col items-start gap-1 min-w-0">
@@ -4305,7 +4305,7 @@
                       >
                       {#each tags as tag}
                         <span
-                          class="text-[10px] font-sans font-medium px-1.5 py-0.5 rounded-full bg-exo-yellow/10 text-exo-yellow/80"
+                          class="text-[10px] font-sans font-medium px-1.5 py-0.5 rounded-full bg-exo-green/10 text-exo-green/80"
                           >{tag}</span
                         >
                       {/each}
@@ -4343,7 +4343,7 @@
               modelPickerContext = "dashboard";
               isModelPickerOpen = true;
             }}
-            class="text-sm font-sans text-white/40 hover:text-exo-yellow transition-colors cursor-pointer underline underline-offset-4 decoration-white/20 hover:decoration-exo-yellow/50"
+            class="text-sm font-sans text-white/40 hover:text-exo-green transition-colors cursor-pointer underline underline-offset-4 decoration-white/20 hover:decoration-exo-green/50"
           >
             Browse all models
           </button>
@@ -4373,7 +4373,7 @@
                 class="relative h-2 bg-white/10 rounded-full overflow-hidden"
               >
                 <div
-                  class="absolute inset-y-0 left-0 bg-gradient-to-r from-exo-yellow to-exo-yellow-darker rounded-full transition-all duration-500"
+                  class="absolute inset-y-0 left-0 bg-gradient-to-r from-exo-green to-exo-green-darker rounded-full transition-all duration-500"
                   style="width: {onboardingDownloadProgress.percentage}%"
                 ></div>
               </div>
@@ -4395,7 +4395,7 @@
                 class="relative h-2 bg-white/10 rounded-full overflow-hidden"
               >
                 <div
-                  class="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-exo-yellow to-exo-yellow-darker rounded-full animate-pulse"
+                  class="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-exo-green to-exo-green-darker rounded-full animate-pulse"
                 ></div>
               </div>
               <p class="text-xs font-mono text-white/40 mt-4">
@@ -4451,7 +4451,7 @@
                 class="relative h-2 bg-white/10 rounded-full overflow-hidden"
               >
                 <div
-                  class="absolute inset-y-0 left-0 bg-gradient-to-r from-exo-yellow to-exo-yellow-darker rounded-full transition-all duration-500"
+                  class="absolute inset-y-0 left-0 bg-gradient-to-r from-exo-green to-exo-green-darker rounded-full transition-all duration-500"
                   style="width: {onboardingLoadProgress.percentage}%"
                 ></div>
               </div>
@@ -4463,7 +4463,7 @@
           {:else}
             <div class="flex justify-center mb-4">
               <div
-                class="w-8 h-8 border-2 border-exo-yellow/15 border-t-exo-yellow/70 rounded-full animate-spin"
+                class="w-8 h-8 border-2 border-exo-green/15 border-t-exo-green/70 rounded-full animate-spin"
               ></div>
             </div>
             <p class="text-sm text-white/30 font-sans">Loading...</p>
@@ -4476,12 +4476,7 @@
           class="flex flex-col items-center justify-center w-full max-w-2xl px-8"
           style="opacity: 0; animation: onb-fade-opacity 0.6s ease forwards;"
         >
-          <img
-            src="/exo-logo.png"
-            alt="exo"
-            class="w-28 mb-6"
-            style="opacity: 0.8;"
-          />
+          <h1 class="text-5xl font-bold text-exo-green glow-text mb-6" style="opacity: 0.8;">EXO-PAJI</h1>
 
           {#if onboardingModelId}
             <p class="text-sm text-white/40 font-mono mb-6">
@@ -4613,7 +4608,7 @@
     <!-- Left: Conversation History Sidebar (hidden in topology-only mode, welcome state, or when toggled off) -->
     {#if !topologyOnlyEnabled && sidebarVisible}
       <div
-        class="w-80 flex-shrink-0 border-r border-exo-yellow/10"
+        class="w-80 flex-shrink-0 border-r border-exo-green/10"
         role="complementary"
         aria-label="Conversation history"
       >
@@ -4728,12 +4723,12 @@
           <button
             type="button"
             onclick={toggleTopologyOnlyMode}
-            class="absolute bottom-4 right-4 p-2 rounded border border-exo-yellow/30 bg-exo-dark-gray/80 hover:border-exo-yellow/50 hover:bg-exo-dark-gray transition-colors cursor-pointer backdrop-blur-sm"
+            class="absolute bottom-4 right-4 p-2 rounded border border-exo-green/30 bg-exo-dark-gray/80 hover:border-exo-green/50 hover:bg-exo-dark-gray transition-colors cursor-pointer backdrop-blur-sm"
             title="Exit topology only mode"
             aria-label="Exit topology only mode"
           >
             <svg
-              class="w-5 h-5 text-exo-yellow"
+              class="w-5 h-5 text-exo-green"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -4777,7 +4772,7 @@
               >
                 <div class="text-center">
                   <div
-                    class="w-8 h-8 border-2 border-exo-yellow/30 border-t-exo-yellow rounded-full animate-spin mx-auto mb-4"
+                    class="w-8 h-8 border-2 border-exo-green/30 border-t-exo-green rounded-full animate-spin mx-auto mb-4"
                   ></div>
                   <p
                     class="text-xs font-mono text-white/40 tracking-wider uppercase"
@@ -4875,7 +4870,7 @@
             {#if isFilterActive()}
               <button
                 onclick={clearPreviewNodeFilter}
-                class="absolute top-2 right-2 flex items-center gap-1.5 px-2 py-1 bg-exo-dark-gray/80 border border-exo-yellow/40 rounded text-exo-yellow hover:border-exo-yellow/60 transition-colors cursor-pointer backdrop-blur-sm"
+                class="absolute top-2 right-2 flex items-center gap-1.5 px-2 py-1 bg-exo-dark-gray/80 border border-exo-green/40 rounded text-exo-green hover:border-exo-green/60 transition-colors cursor-pointer backdrop-blur-sm"
                 title="Clear filter"
               >
                 <span class="text-[10px] font-mono tracking-wider">
@@ -4925,7 +4920,7 @@
 
         <!-- Right Sidebar: Instance Controls (wider on welcome page for better visibility) -->
         <aside
-          class="w-80 border-l border-exo-yellow/10 bg-exo-dark-gray flex flex-col flex-shrink-0"
+          class="w-80 border-l border-exo-green/10 bg-exo-dark-gray flex flex-col flex-shrink-0"
           aria-label="Instance controls"
         >
           <!-- Running Instances Panel (only shown when instances exist) - Scrollable -->
@@ -4934,15 +4929,15 @@
               <!-- Panel Header -->
               <div class="flex items-center gap-2 mb-4">
                 <div
-                  class="w-2 h-2 bg-exo-yellow rounded-full shadow-[0_0_8px_rgba(255,215,0,0.6)] animate-pulse"
+                  class="w-2 h-2 bg-exo-green rounded-full shadow-[0_0_8px_rgba(0,255,65,0.6)] animate-pulse"
                 ></div>
                 <h3
-                  class="text-xs text-exo-yellow font-mono tracking-[0.2em] uppercase"
+                  class="text-xs text-exo-green font-mono tracking-[0.2em] uppercase"
                 >
                   Instances
                 </h3>
                 <div
-                  class="flex-1 h-px bg-gradient-to-r from-exo-yellow/30 to-transparent"
+                  class="flex-1 h-px bg-gradient-to-r from-exo-green/30 to-transparent"
                 ></div>
               </div>
 
@@ -5050,7 +5045,7 @@
                         : isFailed
                           ? 'border-red-500/30 border-l-red-400 group-hover:border-red-500/50'
                           : isLoading
-                            ? 'border-exo-yellow/30 border-l-yellow-400 group-hover:border-exo-yellow/50'
+                            ? 'border-exo-green/30 border-l-yellow-400 group-hover:border-exo-green/50'
                             : isReady
                               ? 'border-green-500/30 border-l-green-400 group-hover:border-green-500/50'
                               : 'border-teal-500/30 border-l-teal-400 group-hover:border-teal-500/50'} p-3"
@@ -5082,7 +5077,7 @@
                       </div>
                       <div class="pl-2">
                         <div
-                          class="text-exo-yellow text-xs font-mono tracking-wide truncate"
+                          class="text-exo-green text-xs font-mono tracking-wide truncate"
                         >
                           {getInstanceModelId(instance)}
                         </div>
@@ -5108,7 +5103,7 @@
                         </div>
                         {#if instanceModelId && instanceModelId !== "Unknown" && instanceModelId !== "Unknown Model"}
                           <a
-                            class="inline-flex items-center gap-1 text-[11px] text-white/60 hover:text-exo-yellow transition-colors mt-1"
+                            class="inline-flex items-center gap-1 text-[11px] text-white/60 hover:text-exo-green transition-colors mt-1"
                             href={`https://huggingface.co/${instanceModelId}`}
                             target="_blank"
                             rel="noreferrer noopener"
@@ -5317,7 +5312,7 @@
                                               <div
                                                 class="absolute inset-y-0 left-0 bg-gradient-to-r {isFileComplete
                                                   ? 'from-green-500 to-green-400'
-                                                  : 'from-exo-yellow to-exo-yellow/70'} transition-all duration-300"
+                                                  : 'from-exo-green to-exo-green/70'} transition-all duration-300"
                                                 style="width: {filePercent.toFixed(
                                                   1,
                                                 )}%"
@@ -5444,14 +5439,14 @@
           <div class="p-4 flex-1 overflow-y-auto">
             <!-- Panel Header -->
             <div class="flex items-center gap-2 mb-3 flex-shrink-0">
-              <div class="w-2 h-2 border border-exo-yellow/60 rotate-45"></div>
+              <div class="w-2 h-2 border border-exo-green/60 rotate-45"></div>
               <h3
-                class="text-xs text-exo-yellow font-mono tracking-[0.2em] uppercase"
+                class="text-xs text-exo-green font-mono tracking-[0.2em] uppercase"
               >
                 Load Model
               </h3>
               <div
-                class="flex-1 h-px bg-gradient-to-r from-exo-yellow/30 to-transparent"
+                class="flex-1 h-px bg-gradient-to-r from-exo-green/30 to-transparent"
               ></div>
               <span class="text-sm text-white/70 font-mono"
                 >{models.length} models</span
@@ -5466,7 +5461,7 @@
                   modelPickerContext = "dashboard";
                   isModelPickerOpen = true;
                 }}
-                class="w-full bg-exo-medium-gray/50 border border-exo-yellow/30 rounded pl-3 pr-8 py-2.5 text-sm font-mono text-left tracking-wide cursor-pointer transition-all duration-200 hover:border-exo-yellow/50 focus:outline-none focus:border-exo-yellow/70 relative"
+                class="w-full bg-exo-medium-gray/50 border border-exo-green/30 rounded pl-3 pr-8 py-2.5 text-sm font-mono text-left tracking-wide cursor-pointer transition-all duration-200 hover:border-exo-green/50 focus:outline-none focus:border-exo-green/70 relative"
               >
                 {#if selectedModelId}
                   {@const foundModel = models.find(
@@ -5526,7 +5521,7 @@
                   class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"
                 >
                   <svg
-                    class="w-4 h-4 text-exo-yellow/60"
+                    class="w-4 h-4 text-exo-green/60"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -5583,17 +5578,17 @@
                         }}
                         class="flex items-center gap-2 py-1.5 px-3 text-xs font-mono border rounded transition-all duration-200 cursor-pointer {selectedSharding ===
                         'Pipeline'
-                          ? 'bg-transparent text-exo-yellow border-exo-yellow'
-                          : 'bg-transparent text-white/70 border-exo-medium-gray/50 hover:border-exo-yellow/50'}"
+                          ? 'bg-transparent text-exo-green border-exo-green'
+                          : 'bg-transparent text-white/70 border-exo-medium-gray/50 hover:border-exo-green/50'}"
                       >
                         <span
                           class="w-3 h-3 rounded-full border-2 flex items-center justify-center {selectedSharding ===
                           'Pipeline'
-                            ? 'border-exo-yellow'
+                            ? 'border-exo-green'
                             : 'border-exo-medium-gray'}"
                         >
                           {#if selectedSharding === "Pipeline"}
-                            <span class="w-1.5 h-1.5 rounded-full bg-exo-yellow"
+                            <span class="w-1.5 h-1.5 rounded-full bg-exo-green"
                             ></span>
                           {/if}
                         </span>
@@ -5606,17 +5601,17 @@
                         }}
                         class="flex items-center gap-2 py-1.5 px-3 text-xs font-mono border rounded transition-all duration-200 cursor-pointer {selectedSharding ===
                         'Tensor'
-                          ? 'bg-transparent text-exo-yellow border-exo-yellow'
-                          : 'bg-transparent text-white/70 border-exo-medium-gray/50 hover:border-exo-yellow/50'}"
+                          ? 'bg-transparent text-exo-green border-exo-green'
+                          : 'bg-transparent text-white/70 border-exo-medium-gray/50 hover:border-exo-green/50'}"
                       >
                         <span
                           class="w-3 h-3 rounded-full border-2 flex items-center justify-center {selectedSharding ===
                           'Tensor'
-                            ? 'border-exo-yellow'
+                            ? 'border-exo-green'
                             : 'border-exo-medium-gray'}"
                         >
                           {#if selectedSharding === "Tensor"}
-                            <span class="w-1.5 h-1.5 rounded-full bg-exo-yellow"
+                            <span class="w-1.5 h-1.5 rounded-full bg-exo-green"
                             ></span>
                           {/if}
                         </span>
@@ -5638,17 +5633,17 @@
                         }}
                         class="flex items-center gap-2 py-1.5 px-3 text-xs font-mono border rounded transition-all duration-200 cursor-pointer {selectedInstanceType ===
                         'MlxRing'
-                          ? 'bg-transparent text-exo-yellow border-exo-yellow'
-                          : 'bg-transparent text-white/70 border-exo-medium-gray/50 hover:border-exo-yellow/50'}"
+                          ? 'bg-transparent text-exo-green border-exo-green'
+                          : 'bg-transparent text-white/70 border-exo-medium-gray/50 hover:border-exo-green/50'}"
                       >
                         <span
                           class="w-3 h-3 rounded-full border-2 flex items-center justify-center {selectedInstanceType ===
                           'MlxRing'
-                            ? 'border-exo-yellow'
+                            ? 'border-exo-green'
                             : 'border-exo-medium-gray'}"
                         >
                           {#if selectedInstanceType === "MlxRing"}
-                            <span class="w-1.5 h-1.5 rounded-full bg-exo-yellow"
+                            <span class="w-1.5 h-1.5 rounded-full bg-exo-green"
                             ></span>
                           {/if}
                         </span>
@@ -5661,17 +5656,17 @@
                         }}
                         class="flex items-center gap-2 py-1.5 px-3 text-xs font-mono border rounded transition-all duration-200 cursor-pointer {selectedInstanceType ===
                         'MlxJaccl'
-                          ? 'bg-transparent text-exo-yellow border-exo-yellow'
-                          : 'bg-transparent text-white/70 border-exo-medium-gray/50 hover:border-exo-yellow/50'}"
+                          ? 'bg-transparent text-exo-green border-exo-green'
+                          : 'bg-transparent text-white/70 border-exo-medium-gray/50 hover:border-exo-green/50'}"
                       >
                         <span
                           class="w-3 h-3 rounded-full border-2 flex items-center justify-center {selectedInstanceType ===
                           'MlxJaccl'
-                            ? 'border-exo-yellow'
+                            ? 'border-exo-green'
                             : 'border-exo-medium-gray'}"
                         >
                           {#if selectedInstanceType === "MlxJaccl"}
-                            <span class="w-1.5 h-1.5 rounded-full bg-exo-yellow"
+                            <span class="w-1.5 h-1.5 rounded-full bg-exo-green"
                             ></span>
                           {/if}
                         </span>
@@ -5720,14 +5715,14 @@
                         >
                           <span
                             class="rounded-full transition-all {isSelected
-                              ? 'w-6 h-6 bg-exo-yellow shadow-[0_0_10px_rgba(255,215,0,0.6)]'
+                              ? 'w-6 h-6 bg-exo-green shadow-[0_0_10px_rgba(0,255,65,0.6)]'
                               : isValid
                                 ? 'w-4 h-4 bg-exo-light-gray/70 mt-1'
                                 : 'w-3 h-3 bg-exo-medium-gray/50 mt-1.5'}"
                           ></span>
                           <span
                             class="text-sm font-mono mt-1.5 tabular-nums transition-colors {isSelected
-                              ? 'text-exo-yellow font-bold'
+                              ? 'text-exo-green font-bold'
                               : isValid
                                 ? 'text-white/70'
                                 : 'text-white/30'}">{n}</span
@@ -5753,7 +5748,7 @@
               {:else if loadingPreviews}
                 <div class="text-center py-8">
                   <div
-                    class="text-xs text-exo-yellow font-mono tracking-wider uppercase animate-pulse"
+                    class="text-xs text-exo-green font-mono tracking-wider uppercase animate-pulse"
                   >
                     Loading preview...
                   </div>
@@ -5834,7 +5829,7 @@
                 {#if chatLaunchState === "launching"}
                   <div class="flex flex-col items-center gap-3">
                     <div
-                      class="w-8 h-8 border-2 border-exo-yellow/30 border-t-exo-yellow rounded-full animate-spin"
+                      class="w-8 h-8 border-2 border-exo-green/30 border-t-exo-green rounded-full animate-spin"
                     ></div>
                     <p
                       class="text-xs text-exo-light-gray font-mono uppercase tracking-wider"
@@ -5847,7 +5842,7 @@
                     <div
                       class="flex items-center justify-between text-xs font-mono"
                     >
-                      <span class="text-exo-yellow uppercase tracking-wider"
+                      <span class="text-exo-green uppercase tracking-wider"
                         >Downloading</span
                       >
                       {#if chatLaunchDownload}
@@ -5860,7 +5855,7 @@
                       class="w-full h-2 bg-exo-dark-gray rounded-full overflow-hidden border border-exo-medium-gray/30"
                     >
                       <div
-                        class="h-full bg-gradient-to-r from-exo-yellow/80 to-exo-yellow rounded-full transition-all duration-300"
+                        class="h-full bg-gradient-to-r from-exo-green/80 to-exo-green rounded-full transition-all duration-300"
                         style="width: {chatLaunchDownload?.percentage ?? 0}%"
                       ></div>
                     </div>
@@ -5889,7 +5884,7 @@
                     <div
                       class="flex items-center justify-between text-xs font-mono"
                     >
-                      <span class="text-exo-yellow uppercase tracking-wider"
+                      <span class="text-exo-green uppercase tracking-wider"
                         >Loading model</span
                       >
                       {#if chatLaunchLoadProgress}
@@ -5903,7 +5898,7 @@
                       class="w-full h-2 bg-exo-dark-gray rounded-full overflow-hidden border border-exo-medium-gray/30"
                     >
                       <div
-                        class="h-full bg-gradient-to-r from-exo-yellow/80 to-exo-yellow rounded-full transition-all duration-300"
+                        class="h-full bg-gradient-to-r from-exo-green/80 to-exo-green rounded-full transition-all duration-300"
                         style="width: {chatLaunchLoadProgress?.percentage ??
                           0}%"
                       ></div>
@@ -5959,7 +5954,7 @@
                             selectedChatCategory = null;
                             sendMessage(prompt);
                           }}
-                          class="text-left px-3 py-2.5 text-xs text-exo-light-gray hover:text-white font-mono rounded-lg border border-exo-medium-gray/30 hover:border-exo-yellow/30 bg-exo-dark-gray/30 hover:bg-exo-dark-gray/60 transition-all duration-200 cursor-pointer"
+                          class="text-left px-3 py-2.5 text-xs text-exo-light-gray hover:text-white font-mono rounded-lg border border-exo-medium-gray/30 hover:border-exo-green/30 bg-exo-dark-gray/30 hover:bg-exo-dark-gray/60 transition-all duration-200 cursor-pointer"
                         >
                           {prompt}
                         </button>
@@ -6025,7 +6020,7 @@
         <!-- Right: Mini-Map Sidebar -->
         {#if minimized}
           <aside
-            class="w-80 border-l border-exo-yellow/20 bg-exo-dark-gray flex flex-col flex-shrink-0 overflow-y-auto"
+            class="w-80 border-l border-exo-green/20 bg-exo-dark-gray flex flex-col flex-shrink-0 overflow-y-auto"
             in:fly={{ x: 100, duration: 400, easing: cubicInOut }}
             aria-label="Cluster topology"
           >
@@ -6037,10 +6032,10 @@
             >
               <div class="flex items-center justify-between mb-3">
                 <div
-                  class="text-xs text-exo-yellow tracking-[0.2em] uppercase flex items-center gap-2"
+                  class="text-xs text-exo-green tracking-[0.2em] uppercase flex items-center gap-2"
                 >
                   <span
-                    class="w-1.5 h-1.5 bg-exo-yellow rounded-full status-pulse"
+                    class="w-1.5 h-1.5 bg-exo-green rounded-full status-pulse"
                   ></span>
                   TOPOLOGY
                 </div>
@@ -6068,15 +6063,15 @@
                 <!-- Panel Header -->
                 <div class="flex items-center gap-2 mb-4">
                   <div
-                    class="w-2 h-2 bg-exo-yellow rounded-full shadow-[0_0_8px_rgba(255,215,0,0.6)] animate-pulse"
+                    class="w-2 h-2 bg-exo-green rounded-full shadow-[0_0_8px_rgba(0,255,65,0.6)] animate-pulse"
                   ></div>
                   <h3
-                    class="text-xs text-exo-yellow font-mono tracking-[0.2em] uppercase"
+                    class="text-xs text-exo-green font-mono tracking-[0.2em] uppercase"
                   >
                     Instances
                   </h3>
                   <div
-                    class="flex-1 h-px bg-gradient-to-r from-exo-yellow/30 to-transparent"
+                    class="flex-1 h-px bg-gradient-to-r from-exo-green/30 to-transparent"
                   ></div>
                 </div>
                 <div
@@ -6181,7 +6176,7 @@
                           : isFailed
                             ? 'border-red-500/30 border-l-red-400'
                             : isLoading
-                              ? 'border-exo-yellow/30 border-l-yellow-400'
+                              ? 'border-exo-green/30 border-l-yellow-400'
                               : isReady
                                 ? 'border-green-500/30 border-l-green-400'
                                 : 'border-teal-500/30 border-l-teal-400'} p-3"
@@ -6213,7 +6208,7 @@
                         </div>
                         <div class="pl-2">
                           <div
-                            class="text-exo-yellow text-xs font-mono tracking-wide truncate"
+                            class="text-exo-green text-xs font-mono tracking-wide truncate"
                           >
                             {getInstanceModelId(instance)}
                           </div>
@@ -6239,7 +6234,7 @@
                           </div>
                           {#if instanceModelId && instanceModelId !== "Unknown" && instanceModelId !== "Unknown Model"}
                             <a
-                              class="inline-flex items-center gap-1 text-[11px] text-white/60 hover:text-exo-yellow transition-colors mt-1"
+                              class="inline-flex items-center gap-1 text-[11px] text-white/60 hover:text-exo-green transition-colors mt-1"
                               href={`https://huggingface.co/${instanceModelId}`}
                               target="_blank"
                               rel="noreferrer noopener"
@@ -6458,7 +6453,7 @@
                                                 <div
                                                   class="absolute inset-y-0 left-0 bg-gradient-to-r {isFileComplete
                                                     ? 'from-green-500 to-green-400'
-                                                    : 'from-exo-yellow to-exo-yellow/70'} transition-all duration-300"
+                                                    : 'from-exo-green to-exo-green/70'} transition-all duration-300"
                                                   style="width: {filePercent.toFixed(
                                                     1,
                                                   )}%"

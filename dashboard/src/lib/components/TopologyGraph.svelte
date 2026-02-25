@@ -134,7 +134,7 @@
     const hotTemp = 75; // Temp for pure red
 
     const coolColor = { r: 93, g: 173, b: 226 }; // #5DADE2 (Blue)
-    const midColor = { r: 255, g: 215, b: 0 }; // #FFD700 (Yellow)
+    const midColor = { r: 255, g: 215, b: 0 }; // #00FF41 (Yellow)
     const hotColor = { r: 244, g: 67, b: 54 }; // #F44336 (Red)
 
     let r: number, g: number, b: number;
@@ -221,9 +221,9 @@
         .attr("y", centerY)
         .attr("text-anchor", "middle")
         .attr("dominant-baseline", "middle")
-        .attr("fill", "rgba(255,215,0,0.4)")
+        .attr("fill", "rgba(0,255,65,0.4)")
         .attr("font-size", isMinimized ? 10 : 12)
-        .attr("font-family", "SF Mono, monospace")
+        .attr("font-family", "Silkscreen, SF Mono, monospace")
         .attr("letter-spacing", "0.1em")
         .text("AWAITING NODES");
       return;
@@ -501,7 +501,7 @@
               .attr("text-anchor", textAnchor)
               .attr("dominant-baseline", isTop ? "hanging" : "auto")
               .attr("font-size", fontSize)
-              .attr("font-family", "SF Mono, monospace")
+              .attr("font-family", "Silkscreen, SF Mono, monospace")
               .attr(
                 "fill",
                 conn.missingIface
@@ -565,22 +565,22 @@
 
       // Holographic wireframe colors - bright yellow for filter, subtle yellow for hover, grey for filtered out
       const wireColor = isInFilter
-        ? "rgba(255,215,0,1)" // Bright yellow for filter selection
+        ? "rgba(0,255,65,1)" // Bright yellow for filter selection
         : isHovered
-          ? "rgba(255,215,0,0.7)" // Subtle yellow for hover
+          ? "rgba(0,255,65,0.7)" // Subtle yellow for hover
           : isHighlighted
-            ? "rgba(255,215,0,0.9)" // Yellow for instance highlight
+            ? "rgba(0,255,65,0.9)" // Yellow for instance highlight
             : isFilteredOut
               ? "rgba(140,140,140,0.6)" // Grey for filtered out
               : "rgba(179,179,179,0.8)"; // Default
       const wireColorBright = "rgba(255,255,255,0.9)";
       const fillColor = isInFilter
-        ? "rgba(255,215,0,0.25)"
+        ? "rgba(0,255,65,0.25)"
         : isHovered
-          ? "rgba(255,215,0,0.12)"
+          ? "rgba(0,255,65,0.12)"
           : isHighlighted
-            ? "rgba(255,215,0,0.15)"
-            : "rgba(255,215,0,0.08)";
+            ? "rgba(0,255,65,0.15)"
+            : "rgba(0,255,65,0.08)";
       const strokeWidth = isInFilter
         ? 3
         : isHovered
@@ -589,7 +589,7 @@
             ? 2.5
             : 1.5;
       const screenFill = "rgba(0,20,40,0.9)";
-      const glowColor = "rgba(255,215,0,0.3)";
+      const glowColor = "rgba(0,255,65,0.3)";
 
       const nodeG = nodesGroup
         .append("g")
@@ -671,7 +671,7 @@
             )
             .attr("width", iconBaseWidth)
             .attr("height", memFillActualHeight)
-            .attr("fill", "rgba(255,215,0,0.75)")
+            .attr("fill", "rgba(0,255,65,0.75)")
             .attr("clip-path", `url(#${studioClipId})`);
         }
 
@@ -754,7 +754,7 @@
             )
             .attr("width", iconBaseWidth)
             .attr("height", memFillActualHeight)
-            .attr("fill", "rgba(255,215,0,0.75)")
+            .attr("fill", "rgba(0,255,65,0.75)")
             .attr("clip-path", `url(#${miniClipId})`);
         }
 
@@ -842,7 +842,7 @@
             )
             .attr("width", screenWidth - screenBezel * 2)
             .attr("height", memFillActualHeight)
-            .attr("fill", "rgba(255,215,0,0.85)")
+            .attr("fill", "rgba(0,255,65,0.85)")
             .attr("clip-path", `url(#${screenClipId})`);
         }
 
@@ -981,8 +981,8 @@
           .attr("dominant-baseline", "middle")
           .attr("fill", "#FFFFFF")
           .attr("font-size", gpuTextFontSize)
-          .attr("font-weight", "700")
-          .attr("font-family", "SF Mono, Monaco, monospace")
+          .attr("font-weight", "400")
+          .attr("font-family", "Silkscreen, SF Mono, Monaco, monospace")
           .text(gpuUsageText);
 
         // Temperature
@@ -994,8 +994,8 @@
           .attr("dominant-baseline", "middle")
           .attr("fill", "#FFFFFF")
           .attr("font-size", gpuTextFontSize)
-          .attr("font-weight", "700")
-          .attr("font-family", "SF Mono, Monaco, monospace")
+          .attr("font-weight", "400")
+          .attr("font-family", "Silkscreen, SF Mono, Monaco, monospace")
           .text(tempText);
 
         // Power (Watts)
@@ -1007,8 +1007,8 @@
           .attr("dominant-baseline", "middle")
           .attr("fill", "#FFFFFF")
           .attr("font-size", gpuTextFontSize)
-          .attr("font-weight", "700")
-          .attr("font-family", "SF Mono, Monaco, monospace")
+          .attr("font-weight", "400")
+          .attr("font-family", "Silkscreen, SF Mono, Monaco, monospace")
           .text(powerText);
       }
 
@@ -1033,10 +1033,10 @@
           .attr("y", nameY)
           .attr("text-anchor", "middle")
           .attr("dominant-baseline", "middle")
-          .attr("fill", "#FFD700")
+          .attr("fill", "#00FF41")
           .attr("font-size", fontSize)
           .attr("font-weight", 500)
-          .attr("font-family", "SF Mono, Monaco, monospace")
+          .attr("font-family", "Silkscreen, SF Mono, Monaco, monospace")
           .text(displayName);
 
         // Memory info below - used in grey, total in yellow
@@ -1047,10 +1047,10 @@
           .attr("y", infoY)
           .attr("text-anchor", "middle")
           .attr("font-size", fontSize * 0.85)
-          .attr("font-family", "SF Mono, Monaco, monospace");
+          .attr("font-family", "Silkscreen, SF Mono, Monaco, monospace");
         memText
           .append("tspan")
-          .attr("fill", "rgba(255,215,0,0.9)")
+          .attr("fill", "rgba(0,255,65,0.9)")
           .text(`${formatBytes(ramUsed)}`);
         memText
           .append("tspan")
@@ -1075,9 +1075,9 @@
           .attr("x", nodeInfo.x)
           .attr("y", nameY)
           .attr("text-anchor", "middle")
-          .attr("fill", "#FFD700")
+          .attr("fill", "#00FF41")
           .attr("font-size", fontSize)
-          .attr("font-family", "SF Mono, Monaco, monospace")
+          .attr("font-family", "Silkscreen, SF Mono, Monaco, monospace")
           .text(shortName);
 
         // Single line of key stats
@@ -1087,9 +1087,9 @@
           .attr("x", nodeInfo.x)
           .attr("y", statsY)
           .attr("text-anchor", "middle")
-          .attr("fill", "rgba(255,215,0,0.7)")
+          .attr("fill", "rgba(0,255,65,0.7)")
           .attr("font-size", fontSize * 0.85)
-          .attr("font-family", "SF Mono, Monaco, monospace")
+          .attr("font-family", "Silkscreen, SF Mono, Monaco, monospace")
           .text(
             `${ramUsagePercent.toFixed(0)}%${!isNaN(gpuTemp) ? " " + gpuTemp.toFixed(0) + "°C" : ""}`,
           );
@@ -1108,10 +1108,10 @@
           .attr("x", nodeInfo.x)
           .attr("y", nameY)
           .attr("text-anchor", "middle")
-          .attr("fill", "#FFD700")
+          .attr("fill", "#00FF41")
           .attr("font-size", fontSize)
           .attr("font-weight", "500")
-          .attr("font-family", "SF Mono, Monaco, monospace")
+          .attr("font-family", "Silkscreen, SF Mono, Monaco, monospace")
           .text(shortName);
 
         // Memory info below icon - used in grey, total in yellow (same as main topology)
@@ -1122,10 +1122,10 @@
           .attr("y", infoY)
           .attr("text-anchor", "middle")
           .attr("font-size", fontSize * 0.85)
-          .attr("font-family", "SF Mono, Monaco, monospace");
+          .attr("font-family", "Silkscreen, SF Mono, Monaco, monospace");
         memTextMini
           .append("tspan")
-          .attr("fill", "rgba(255,215,0,0.9)")
+          .attr("fill", "rgba(0,255,65,0.9)")
           .text(`${formatBytes(ramUsed)}`);
         memTextMini
           .append("tspan")
@@ -1159,7 +1159,7 @@
             .attr("text-anchor", "middle")
             .attr("fill", tbColor)
             .attr("font-size", debugFontSize)
-            .attr("font-family", "SF Mono, Monaco, monospace")
+            .attr("font-family", "Silkscreen, SF Mono, Monaco, monospace")
             .text(tbText);
           debugLabelY += debugLineHeight;
         }
@@ -1177,7 +1177,7 @@
             .attr("text-anchor", "middle")
             .attr("fill", rdmaColor)
             .attr("font-size", debugFontSize)
-            .attr("font-family", "SF Mono, Monaco, monospace")
+            .attr("font-family", "Silkscreen, SF Mono, Monaco, monospace")
             .text(rdmaText);
           debugLabelY += debugLineHeight;
         }
@@ -1191,7 +1191,7 @@
             .attr("text-anchor", "middle")
             .attr("fill", "rgba(179,179,179,0.7)")
             .attr("font-size", debugFontSize)
-            .attr("font-family", "SF Mono, Monaco, monospace")
+            .attr("font-family", "Silkscreen, SF Mono, Monaco, monospace")
             .text(
               `macOS ${identity.osVersion}${identity.osBuildVersion ? ` (${identity.osBuildVersion})` : ""}`,
             );

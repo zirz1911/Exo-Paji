@@ -264,12 +264,12 @@
         <button
           type="button"
           onclick={() => rec.model && onSelect(rec.model.id, rec.category)}
-          class="group relative flex flex-col items-start gap-2 p-4 rounded-lg border border-exo-medium-gray/50 bg-exo-dark-gray/50 hover:border-exo-yellow/40 hover:bg-exo-dark-gray transition-all duration-200 cursor-pointer text-left"
+          class="group relative flex flex-col items-start gap-2 p-4 rounded-lg border border-exo-medium-gray/50 bg-exo-dark-gray/50 hover:border-exo-green/40 hover:bg-exo-dark-gray transition-all duration-200 cursor-pointer text-left"
         >
           <!-- Category icon + label -->
           <div class="flex items-center gap-2 w-full">
             <svg
-              class="w-4 h-4 text-exo-yellow/70 group-hover:text-exo-yellow transition-colors flex-shrink-0"
+              class="w-4 h-4 text-exo-green/70 group-hover:text-exo-green transition-colors flex-shrink-0"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -366,7 +366,7 @@
   <button
     type="button"
     onclick={onAddModel}
-    class="flex items-center gap-2 px-4 py-2 text-xs font-mono uppercase tracking-wider text-exo-light-gray hover:text-exo-yellow border border-exo-medium-gray/30 hover:border-exo-yellow/30 rounded-lg transition-all duration-200 cursor-pointer"
+    class="flex items-center gap-2 px-4 py-2 text-xs font-mono uppercase tracking-wider text-exo-light-gray hover:text-exo-green border border-exo-medium-gray/30 hover:border-exo-green/30 rounded-lg transition-all duration-200 cursor-pointer"
   >
     <svg
       class="w-3.5 h-3.5"

@@ -598,7 +598,7 @@
 
   <!-- Modal -->
   <div
-    class="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(90vw,600px)] h-[min(80vh,700px)] bg-exo-dark-gray border border-exo-yellow/10 rounded-lg shadow-2xl overflow-hidden flex flex-col"
+    class="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(90vw,600px)] h-[min(80vh,700px)] bg-exo-dark-gray border border-exo-green/10 rounded-lg shadow-2xl overflow-hidden flex flex-col"
     transition:fly={{ y: 20, duration: 300, easing: cubicOut }}
     role="dialog"
     aria-modal="true"
@@ -606,7 +606,7 @@
   >
     <!-- Header with search -->
     <div
-      class="flex items-center gap-2 p-3 border-b border-exo-yellow/10 bg-exo-medium-gray/30"
+      class="flex items-center gap-2 p-3 border-b border-exo-green/10 bg-exo-medium-gray/30"
     >
       {#if selectedFamily === "huggingface"}
         <!-- HuggingFace search -->
@@ -656,7 +656,7 @@
         <span
           class="text-xs font-mono flex-shrink-0"
           title="Cluster memory usage"
-          ><span class="text-exo-yellow">{Math.round(usedMemoryGB)}GB</span
+          ><span class="text-exo-green">{Math.round(usedMemoryGB)}GB</span
           ><span class="text-white/40">/{Math.round(totalMemoryGB)}GB</span
           ></span
         >
@@ -665,7 +665,7 @@
           <button
             type="button"
             class="p-1.5 rounded hover:bg-white/10 transition-colors {hasActiveFilters
-              ? 'text-exo-yellow'
+              ? 'text-exo-green'
               : 'text-white/50'}"
             onclick={() => (showFilters = !showFilters)}
             title="Filter by capability or size"
@@ -717,7 +717,7 @@
           <div class="flex-1 flex flex-col min-h-0">
             <!-- Section header -->
             <div
-              class="sticky top-0 z-10 px-3 py-2 bg-exo-dark-gray/95 border-b border-exo-yellow/10"
+              class="sticky top-0 z-10 px-3 py-2 bg-exo-dark-gray/95 border-b border-exo-green/10"
             >
               <span class="text-xs font-mono text-white/40">
                 {#if hfSearchQuery.length >= 2}
@@ -782,7 +782,7 @@
 
             <!-- Manual input footer -->
             <div
-              class="sticky bottom-0 border-t border-exo-yellow/10 bg-exo-dark-gray p-3"
+              class="sticky bottom-0 border-t border-exo-green/10 bg-exo-dark-gray p-3"
             >
               {#if addModelError}
                 <div
@@ -796,7 +796,7 @@
               <div class="flex gap-2">
                 <input
                   type="text"
-                  class="flex-1 bg-exo-black/60 border border-exo-yellow/30 rounded px-3 py-1.5 text-xs font-mono text-white placeholder-white/30 focus:outline-none focus:border-exo-yellow/50"
+                  class="flex-1 bg-exo-black/60 border border-exo-green/30 rounded px-3 py-1.5 text-xs font-mono text-white placeholder-white/30 focus:outline-none focus:border-exo-green/50"
                   placeholder="Or paste model ID directly..."
                   bind:value={manualModelId}
                   onkeydown={(e) => {
@@ -867,7 +867,7 @@
             {#if hasActiveFilters || searchQuery}
               <button
                 type="button"
-                class="mt-2 text-xs text-exo-yellow hover:underline"
+                class="mt-2 text-xs text-exo-green hover:underline"
                 onclick={() => {
                   searchQuery = "";
                   clearFilters();
@@ -955,11 +955,11 @@
     <!-- Footer with active filters indicator -->
     {#if hasActiveFilters}
       <div
-        class="flex items-center gap-2 px-3 py-2 border-t border-exo-yellow/10 bg-exo-medium-gray/20 text-xs font-mono text-white/50"
+        class="flex items-center gap-2 px-3 py-2 border-t border-exo-green/10 bg-exo-medium-gray/20 text-xs font-mono text-white/50"
       >
         <span>Filters:</span>
         {#each filters.capabilities as cap}
-          <span class="px-1.5 py-0.5 bg-exo-yellow/20 text-exo-yellow rounded"
+          <span class="px-1.5 py-0.5 bg-exo-green/20 text-exo-green rounded"
             >{cap}</span
           >
         {/each}
@@ -974,7 +974,7 @@
           >
         {/if}
         {#if filters.sizeRange}
-          <span class="px-1.5 py-0.5 bg-exo-yellow/20 text-exo-yellow rounded">
+          <span class="px-1.5 py-0.5 bg-exo-green/20 text-exo-green rounded">
             {filters.sizeRange.min}GB - {filters.sizeRange.max}GB
           </span>
         {/if}
@@ -998,7 +998,7 @@
       role="presentation"
     ></div>
     <div
-      class="fixed z-[60] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(80vw,400px)] bg-exo-dark-gray border border-exo-yellow/10 rounded-lg shadow-2xl p-4"
+      class="fixed z-[60] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(80vw,400px)] bg-exo-dark-gray border border-exo-green/10 rounded-lg shadow-2xl p-4"
       transition:fly={{ y: 10, duration: 200, easing: cubicOut }}
       role="dialog"
       aria-modal="true"
@@ -1033,7 +1033,7 @@
           <span class="text-white/70">{infoGroup.variants.length}</span>
         </div>
         {#if infoGroup.variants.length > 0}
-          <div class="mt-3 pt-3 border-t border-exo-yellow/10">
+          <div class="mt-3 pt-3 border-t border-exo-green/10">
             <span class="text-white/40">Available quantizations:</span>
             <div class="flex flex-wrap gap-1 mt-1">
               {#each infoGroup.variants as variant}
@@ -1051,7 +1051,7 @@
         {#if getGroupDownloadAvailability(infoGroup)?.nodeNames?.length}
           {@const infoDownload = getGroupDownloadAvailability(infoGroup)}
           {#if infoDownload}
-            <div class="mt-3 pt-3 border-t border-exo-yellow/10">
+            <div class="mt-3 pt-3 border-t border-exo-green/10">
               <div class="flex items-center gap-2 mb-1">
                 <svg
                   class="w-3.5 h-3.5"

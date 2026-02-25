@@ -51,7 +51,7 @@
   </div>
   <div class="h-1.5 bg-exo-black/60 rounded-full overflow-hidden">
     <div
-      class="h-full bg-exo-yellow rounded-full transition-all duration-150 ease-out"
+      class="h-full bg-exo-green rounded-full transition-all duration-150 ease-out"
       style="width: {percentage}%"
     ></div>
   </div>
