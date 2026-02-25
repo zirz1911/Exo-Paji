@@ -7,6 +7,11 @@
     ModelCard,
     ModelPickerModal,
     ChatModelSelector,
+    SplitView,
+    ChatPanel,
+    TopologyPanel,
+    InstancesList,
+    ClusterWarnings,
   } from "$lib/components";
   import {
     pickAutoModel,
@@ -5807,776 +5812,120 @@
         </aside>
       </div>
     {:else}
-      <!-- CHAT STATE: Chat + Mini-Map -->
-      <div class="flex-1 flex overflow-hidden">
-        <!-- Chat Area -->
-        <div
-          class="flex-1 flex flex-col min-w-0 overflow-hidden"
-          in:fade={{ duration: 300, delay: 100 }}
-        >
-          {#if chatLaunchState !== "idle" && chatLaunchState !== "ready"}
-            <!-- Model launching/downloading/loading: show progress -->
-            <div class="flex-1 flex items-center justify-center px-8 py-6">
-              <div class="flex flex-col items-center gap-6 max-w-md w-full">
-                <!-- Model name -->
-                {#if pendingChatModelId}
-                  <p class="text-sm text-white font-mono tracking-wide">
-                    {pendingChatModelId.split("/").pop()?.replace(/-/g, " ") ||
-                      pendingChatModelId}
-                  </p>
-                {/if}
-
-                {#if chatLaunchState === "launching"}
-                  <div class="flex flex-col items-center gap-3">
-                    <div
-                      class="w-8 h-8 border-2 border-exo-green/30 border-t-exo-green rounded-full animate-spin"
-                    ></div>
-                    <p
-                      class="text-xs text-exo-light-gray font-mono uppercase tracking-wider"
-                    >
-                      Preparing to launch&hellip;
-                    </p>
-                  </div>
-                {:else if chatLaunchState === "downloading"}
-                  <div class="w-full flex flex-col gap-3">
-                    <div
-                      class="flex items-center justify-between text-xs font-mono"
-                    >
-                      <span class="text-exo-green uppercase tracking-wider"
-                        >Downloading</span
-                      >
-                      {#if chatLaunchDownload}
-                        <span class="text-exo-light-gray tabular-nums">
-                          {chatLaunchDownload.percentage.toFixed(1)}%
-                        </span>
-                      {/if}
-                    </div>
-                    <div
-                      class="w-full h-2 bg-exo-dark-gray rounded-full overflow-hidden border border-exo-medium-gray/30"
-                    >
-                      <div
-                        class="h-full bg-gradient-to-r from-exo-green/80 to-exo-green rounded-full transition-all duration-300"
-                        style="width: {chatLaunchDownload?.percentage ?? 0}%"
-                      ></div>
-                    </div>
-                    {#if chatLaunchDownload}
-                      <div
-                        class="flex justify-between text-[10px] text-exo-light-gray/60 font-mono"
-                      >
-                        <span
-                          >{formatBytes(chatLaunchDownload.downloadedBytes)} / {formatBytes(
-                            chatLaunchDownload.totalBytes,
-                          )}</span
-                        >
-                        <span>
-                          {#if chatLaunchDownload.speed > 0}
-                            {formatBytes(chatLaunchDownload.speed)}/s
-                          {/if}
-                          {#if chatLaunchDownload.etaMs > 0}
-                            &middot; {formatEta(chatLaunchDownload.etaMs)}
-                          {/if}
-                        </span>
-                      </div>
-                    {/if}
-                  </div>
-                {:else if chatLaunchState === "loading"}
-                  <div class="w-full flex flex-col gap-3">
-                    <div
-                      class="flex items-center justify-between text-xs font-mono"
-                    >
-                      <span class="text-exo-green uppercase tracking-wider"
-                        >Loading model</span
-                      >
-                      {#if chatLaunchLoadProgress}
-                        <span class="text-exo-light-gray tabular-nums">
-                          {chatLaunchLoadProgress.layersLoaded}/{chatLaunchLoadProgress.totalLayers}
-                          layers
-                        </span>
-                      {/if}
-                    </div>
-                    <div
-                      class="w-full h-2 bg-exo-dark-gray rounded-full overflow-hidden border border-exo-medium-gray/30"
-                    >
-                      <div
-                        class="h-full bg-gradient-to-r from-exo-green/80 to-exo-green rounded-full transition-all duration-300"
-                        style="width: {chatLaunchLoadProgress?.percentage ??
-                          0}%"
-                      ></div>
-                    </div>
-                  </div>
-                {/if}
-              </div>
-            </div>
-            <div
-              class="flex-shrink-0 px-8 pb-6 pt-4 bg-gradient-to-t from-exo-black via-exo-black to-transparent"
-            >
-              <div class="max-w-7xl mx-auto">
-                <ChatForm
-                  placeholder="Ask anything"
-                  showModelSelector={true}
-                  modelTasks={modelTasks()}
-                  modelCapabilities={modelCapabilities()}
-                  onAutoSend={handleChatSend}
-                  onOpenModelPicker={openChatModelPicker}
-                />
-              </div>
-            </div>
-          {:else if messages().length > 0 || chatLaunchState === "ready"}
-            <!-- Normal chat: show messages -->
-            <div
-              class="flex-1 overflow-y-auto px-8 py-6"
-              bind:this={chatScrollRef}
-              role="log"
-              aria-live="polite"
-              aria-label="Chat messages"
-            >
-              <div class="max-w-7xl mx-auto">
-                <ChatMessages scrollParent={chatScrollRef} />
-                {#if chatLaunchState === "ready" && selectedChatCategory}
-                  {@const prompts =
-                    categorySuggestedPrompts[selectedChatCategory] ??
-                    categorySuggestedPrompts.auto}
-                  <div
-                    class="flex flex-col items-center gap-4 mt-12"
-                    in:fade={{ duration: 300 }}
-                  >
-                    <p
-                      class="text-xs text-exo-light-gray/60 font-mono uppercase tracking-wider"
-                    >
-                      Try asking
-                    </p>
-                    <div class="grid grid-cols-2 gap-2 max-w-lg w-full">
-                      {#each prompts as prompt}
-                        <button
-                          type="button"
-                          onclick={() => {
-                            chatLaunchState = "idle";
-                            selectedChatCategory = null;
-                            sendMessage(prompt);
-                          }}
-                          class="text-left px-3 py-2.5 text-xs text-exo-light-gray hover:text-white font-mono rounded-lg border border-exo-medium-gray/30 hover:border-exo-green/30 bg-exo-dark-gray/30 hover:bg-exo-dark-gray/60 transition-all duration-200 cursor-pointer"
-                        >
-                          {prompt}
-                        </button>
-                      {/each}
-                    </div>
-                  </div>
-                {/if}
-              </div>
-            </div>
-            <div
-              class="flex-shrink-0 px-8 pb-6 pt-4 bg-gradient-to-t from-exo-black via-exo-black to-transparent"
-            >
-              <div class="max-w-7xl mx-auto">
-                <ChatForm
-                  placeholder="Ask anything"
-                  showModelSelector={true}
-                  modelTasks={modelTasks()}
-                  modelCapabilities={modelCapabilities()}
-                  onAutoSend={handleChatSend}
-                  onOpenModelPicker={openChatModelPicker}
-                />
-              </div>
-            </div>
-          {:else}
-            <!-- No running instance, no messages: show model selector -->
-            <div
-              class="flex-1 overflow-y-auto flex items-center justify-center px-8 py-6"
-            >
-              <ChatModelSelector
-                models={models.map((m) => ({
-                  id: m.id,
-                  name: m.name ?? "",
-                  base_model: m.base_model ?? "",
-                  storage_size_megabytes: m.storage_size_megabytes ?? 0,
-                  capabilities: m.capabilities ?? [],
-                  family: m.family ?? "",
-                  quantization: m.quantization ?? "",
-                }))}
-                clusterLabel={chatClusterLabel}
-                totalMemoryGB={availableMemoryGB()}
-                onSelect={handleChatModelSelect}
-                onAddModel={handleChatAddModel}
-              />
-            </div>
-            <div
-              class="flex-shrink-0 px-8 pb-6 pt-4 bg-gradient-to-t from-exo-black via-exo-black to-transparent"
-            >
-              <div class="max-w-7xl mx-auto">
-                <ChatForm
-                  placeholder="Ask anything — we'll pick the best model automatically"
-                  showModelSelector={!!bestRunningModelId}
-                  modelDisplayOverride={bestRunningModelId ?? undefined}
-                  modelTasks={modelTasks()}
-                  modelCapabilities={modelCapabilities()}
-                  onAutoSend={handleAutoSend}
-                  onOpenModelPicker={openChatModelPicker}
-                />
-              </div>
-            </div>
-          {/if}
-        </div>
-
-        <!-- Right: Mini-Map Sidebar -->
-        {#if minimized}
-          <aside
-            class="w-80 border-l border-exo-green/20 bg-exo-dark-gray flex flex-col flex-shrink-0 overflow-y-auto"
-            in:fly={{ x: 100, duration: 400, easing: cubicInOut }}
-            aria-label="Cluster topology"
+      <!-- Chat Active State: NEW Split View Layout -->
+      <SplitView
+        leftHeader="💬 CHAT INTERFACE"
+        rightHeader="◢◣ CLUSTER TOPOLOGY"
+        defaultRatio={50}
+        minRatio={30}
+        maxRatio={70}
+        storageKey="exo-dashboard-split"
+      >
+        {#snippet leftContent()}
+          <ChatPanel
+            chatStarted={chatStarted}
+            sidebarVisible={false}
+            launchState={chatLaunchState}
+            launchModelName={pendingChatModelId}
+            launchDownloadProgress={chatLaunchDownload}
+            launchLoadProgress={chatLaunchLoadProgress}
+            selectedChatCategory={selectedChatCategory}
+            suggestedPrompts={[
+              "Tell me about this cluster",
+              "What models are running?",
+              "Show cluster performance"
+            ]}
+            formatBytes={formatBytes}
+            formatEta={formatEta}
+            onSuggestedPromptClick={(prompt) => {
+              const textarea = document.querySelector('textarea[placeholder*="message"]');
+              if (textarea) {
+                textarea.value = prompt;
+                textarea.focus();
+              }
+            }}
           >
-            <!-- Topology Section - clickable to go back to main view -->
-            <button
-              class="p-4 border-b border-exo-medium-gray/30 w-full text-left cursor-pointer hover:bg-exo-medium-gray/10 transition-colors"
-              onclick={handleGoHome}
-              title="Click to return to main topology view"
-            >
-              <div class="flex items-center justify-between mb-3">
-                <div
-                  class="text-xs text-exo-green tracking-[0.2em] uppercase flex items-center gap-2"
-                >
-                  <span
-                    class="w-1.5 h-1.5 bg-exo-green rounded-full status-pulse"
-                  ></span>
-                  TOPOLOGY
-                </div>
-                <span class="text-xs text-white/70 tabular-nums"
-                  >{nodeCount} {nodeCount === 1 ? "NODE" : "NODES"}</span
-                >
-              </div>
+            {#snippet chatMessages()}
+              <ChatMessages />
+            {/snippet}
 
-              <div
-                class="relative aspect-square bg-exo-dark-gray rounded-lg overflow-hidden"
+            {#snippet chatForm()}
+              <ChatForm />
+            {/snippet}
+
+            {#snippet chatModelSelector()}
+              <ChatModelSelector />
+            {/snippet}
+          </ChatPanel>
+        {/snippet}
+
+        {#snippet rightContent()}
+          <TopologyPanel
+            topologyData={data}
+            lastUpdate={update}
+            instances={instanceData}
+            runners={runnersData}
+            downloads={downloadsData}
+            tbBridgeCycles={tbBridgeCycles}
+            identitiesData={identitiesData}
+            rdmaCtlData={rdmaCtlData}
+            minimized={false}
+            topologyOnly={false}
+            debugEnabled={debugEnabled}
+            nodeFilter={nodeFilter}
+            hoveredInstanceId={hoveredInstanceId}
+            instanceDownloadExpandedNodes={instanceDownloadExpandedNodes}
+            copiedCommand={copiedCommand}
+            tb5InfoDismissed={tb5InfoDismissed}
+            macStudioEn2Dismissed={macStudioEn2Dismissed}
+            onInstanceClick={(id, modelId) => {
+              userForcedIdle = false;
+              setSelectedChatModel(modelId);
+            }}
+            onInstanceHover={(id) => {
+              hoveredInstanceId = id;
+            }}
+            onDeleteInstance={deleteInstance}
+            onClearFilter={clearPreviewNodeFilter}
+            onToggleTopologyOnly={toggleTopologyOnlyMode}
+            onToggleDownloadDetails={toggleInstanceDownloadDetails}
+            onDismissTb5={() => {
+              tb5InfoDismissed = true;
+            }}
+            onDismissMacStudioEn2={() => {
+              macStudioEn2Dismissed = true;
+            }}
+            getInstanceDownloadStatus={getInstanceDownloadStatus}
+            getInstanceModelId={getInstanceModelId}
+            getInstanceInfo={getInstanceInfo}
+            getInstanceConnections={getInstanceConnections}
+            deriveInstanceStatus={deriveInstanceStatus}
+            formatBytes={formatBytes}
+            formatSpeed={formatSpeed}
+            formatEta={formatEta}
+            getStatusColor={getStatusColor}
+            getNodeName={getNodeName}
+            copyToClipboard={copyToClipboard}
+            getTbBridgeServiceName={getTbBridgeServiceName}
+          >
+            {#snippet topologyGraph()}
+              <TopologyGraph />
+            {/snippet}
+
+            {#snippet modelLauncher()}
+              <button
+                onclick={() => {
+                  showModelPicker = true;
+                  modelPickerContext = "dashboard";
+                }}
+                class="w-full py-3 px-4 bg-exo-green/10 hover:bg-exo-green/20 border border-exo-green/30 rounded text-exo-green font-mono text-sm transition-colors"
               >
-                <TopologyGraph
-                  highlightedNodes={highlightedNodes()}
-                  filteredNodes={nodeFilter}
-                  onNodeClick={togglePreviewNodeFilter}
-                />
-
-                {@render clusterWarningsCompact()}
-              </div>
-            </button>
-
-            <!-- Instances Section (only shown when instances exist) -->
-            {#if instanceCount > 0}
-              <div class="p-4 flex-1">
-                <!-- Panel Header -->
-                <div class="flex items-center gap-2 mb-4">
-                  <div
-                    class="w-2 h-2 bg-exo-green rounded-full shadow-[0_0_8px_rgba(0,255,65,0.6)] animate-pulse"
-                  ></div>
-                  <h3
-                    class="text-xs text-exo-green font-mono tracking-[0.2em] uppercase"
-                  >
-                    Instances
-                  </h3>
-                  <div
-                    class="flex-1 h-px bg-gradient-to-r from-exo-green/30 to-transparent"
-                  ></div>
-                </div>
-                <div
-                  class="space-y-3 max-h-72 xl:max-h-96 overflow-y-auto overflow-x-hidden py-px pr-1"
-                >
-                  {#each Object.entries(instanceData) as [id, instance]}
-                    {@const downloadInfo = getInstanceDownloadStatus(
-                      id,
-                      instance,
-                    )}
-                    {@const statusText = downloadInfo.statusText}
-                    {@const isDownloading = downloadInfo.isDownloading}
-                    {@const isFailed = statusText === "FAILED"}
-                    {@const isLoading = statusText === "LOADING"}
-                    {@const isWarmingUp =
-                      statusText === "WARMING UP" || statusText === "WAITING"}
-                    {@const isReady =
-                      statusText === "READY" || statusText === "LOADED"}
-                    {@const isRunning = statusText === "RUNNING"}
-                    <!-- Instance Card -->
-                    {@const instanceModelId = getInstanceModelId(instance)}
-                    {@const instanceInfo = getInstanceInfo(instance)}
-                    {@const instanceConnections =
-                      getInstanceConnections(instance)}
-                    <div
-                      class="relative group cursor-pointer"
-                      role="button"
-                      tabindex="0"
-                      onmouseenter={() => (hoveredInstanceId = id)}
-                      onmouseleave={() => (hoveredInstanceId = null)}
-                      onclick={() => {
-                        if (
-                          instanceModelId &&
-                          instanceModelId !== "Unknown" &&
-                          instanceModelId !== "Unknown Model"
-                        ) {
-                          userForcedIdle = false;
-                          setSelectedChatModel(instanceModelId);
-                        }
-                      }}
-                      onkeydown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          if (
-                            instanceModelId &&
-                            instanceModelId !== "Unknown" &&
-                            instanceModelId !== "Unknown Model"
-                          ) {
-                            setSelectedChatModel(instanceModelId);
-                          }
-                        }
-                      }}
-                    >
-                      <!-- Corner accents -->
-                      <div
-                        class="absolute -top-px -left-px w-2 h-2 border-l border-t {isDownloading
-                          ? 'border-blue-500/50'
-                          : isFailed
-                            ? 'border-red-500/50'
-                            : isLoading
-                              ? 'border-yellow-500/50'
-                              : isReady
-                                ? 'border-green-500/50'
-                                : 'border-teal-500/50'}"
-                      ></div>
-                      <div
-                        class="absolute -top-px -right-px w-2 h-2 border-r border-t {isDownloading
-                          ? 'border-blue-500/50'
-                          : isFailed
-                            ? 'border-red-500/50'
-                            : isLoading
-                              ? 'border-yellow-500/50'
-                              : isReady
-                                ? 'border-green-500/50'
-                                : 'border-teal-500/50'}"
-                      ></div>
-                      <div
-                        class="absolute -bottom-px -left-px w-2 h-2 border-l border-b {isDownloading
-                          ? 'border-blue-500/50'
-                          : isFailed
-                            ? 'border-red-500/50'
-                            : isLoading
-                              ? 'border-yellow-500/50'
-                              : isReady
-                                ? 'border-green-500/50'
-                                : 'border-teal-500/50'}"
-                      ></div>
-                      <div
-                        class="absolute -bottom-px -right-px w-2 h-2 border-r border-b {isDownloading
-                          ? 'border-blue-500/50'
-                          : isFailed
-                            ? 'border-red-500/50'
-                            : isLoading
-                              ? 'border-yellow-500/50'
-                              : isReady
-                                ? 'border-green-500/50'
-                                : 'border-teal-500/50'}"
-                      ></div>
-
-                      <div
-                        class="bg-exo-dark-gray/60 border border-l-2 {isDownloading
-                          ? 'border-blue-500/30 border-l-blue-400'
-                          : isFailed
-                            ? 'border-red-500/30 border-l-red-400'
-                            : isLoading
-                              ? 'border-exo-green/30 border-l-yellow-400'
-                              : isReady
-                                ? 'border-green-500/30 border-l-green-400'
-                                : 'border-teal-500/30 border-l-teal-400'} p-3"
-                      >
-                        <div class="flex justify-between items-start mb-2 pl-2">
-                          <div class="flex items-center gap-2">
-                            <div
-                              class="w-1.5 h-1.5 {isDownloading
-                                ? 'bg-blue-400 animate-pulse'
-                                : isFailed
-                                  ? 'bg-red-400'
-                                  : isLoading
-                                    ? 'bg-yellow-400 animate-pulse'
-                                    : isReady
-                                      ? 'bg-green-400'
-                                      : 'bg-teal-400'} rounded-full shadow-[0_0_6px_currentColor]"
-                            ></div>
-                            <span
-                              class="text-exo-light-gray font-mono text-sm tracking-wider"
-                              >{id.slice(0, 8).toUpperCase()}</span
-                            >
-                          </div>
-                          <button
-                            onclick={() => deleteInstance(id)}
-                            class="text-xs px-2 py-1 font-mono tracking-wider uppercase border border-red-500/30 text-red-400 hover:bg-red-500/20 hover:text-red-400 hover:border-red-500/50 transition-all duration-200 cursor-pointer"
-                          >
-                            DELETE
-                          </button>
-                        </div>
-                        <div class="pl-2">
-                          <div
-                            class="text-exo-green text-xs font-mono tracking-wide truncate"
-                          >
-                            {getInstanceModelId(instance)}
-                          </div>
-                          <div
-                            class="flex items-center gap-2 text-white/60 text-xs font-mono"
-                          >
-                            <span
-                              >{instanceInfo.sharding} &middot; {instanceInfo.instanceType}</span
-                            >
-                            <span
-                              class="px-1.5 py-0.5 text-[10px] tracking-wider uppercase rounded transition-all duration-300 {isDownloading
-                                ? 'bg-blue-500/15 text-blue-400'
-                                : isFailed
-                                  ? 'bg-red-500/15 text-red-400'
-                                  : isLoading
-                                    ? 'bg-yellow-500/15 text-yellow-400'
-                                    : isReady
-                                      ? 'bg-green-500/15 text-green-400'
-                                      : 'bg-teal-500/15 text-teal-400'}"
-                            >
-                              {statusText}
-                            </span>
-                          </div>
-                          {#if instanceModelId && instanceModelId !== "Unknown" && instanceModelId !== "Unknown Model"}
-                            <a
-                              class="inline-flex items-center gap-1 text-[11px] text-white/60 hover:text-exo-green transition-colors mt-1"
-                              href={`https://huggingface.co/${instanceModelId}`}
-                              target="_blank"
-                              rel="noreferrer noopener"
-                              aria-label="View model on Hugging Face"
-                            >
-                              <span>Hugging Face</span>
-                              <svg
-                                class="w-3.5 h-3.5"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              >
-                                <path d="M14 3h7v7" />
-                                <path d="M10 14l11-11" />
-                                <path
-                                  d="M21 14v6a1 1 0 0 1-1 1h-16a1 1 0 0 1-1-1v-16a1 1 0 0 1 1-1h6"
-                                />
-                              </svg>
-                            </a>
-                          {/if}
-                          {#if instanceInfo.nodeNames.length > 0}
-                            <div class="text-white/60 text-xs font-mono">
-                              {instanceInfo.nodeNames.join(", ")}
-                            </div>
-                          {/if}
-                          {#if debugEnabled && instanceConnections.length > 0}
-                            <div class="mt-2 space-y-1">
-                              {#each instanceConnections as conn}
-                                <div
-                                  class="text-[11px] leading-snug font-mono text-white/70"
-                                >
-                                  <span
-                                    >{conn.from} -> {conn.to}: {conn.ip}</span
-                                  >
-                                  <span
-                                    class={conn.missingIface
-                                      ? "text-red-400"
-                                      : "text-white/60"}
-                                  >
-                                    ({conn.ifaceLabel})</span
-                                  >
-                                </div>
-                              {/each}
-                            </div>
-                          {/if}
-
-                          <!-- Download Progress -->
-                          {#if downloadInfo.isDownloading && downloadInfo.progress}
-                            <div class="mt-2 space-y-1">
-                              <div
-                                class="flex justify-between text-xs font-mono"
-                              >
-                                <span class="text-blue-400"
-                                  >{downloadInfo.progress.percentage.toFixed(
-                                    1,
-                                  )}%</span
-                                >
-                                <span class="text-exo-light-gray"
-                                  >{formatBytes(
-                                    downloadInfo.progress.downloadedBytes,
-                                  )}/{formatBytes(
-                                    downloadInfo.progress.totalBytes,
-                                  )}</span
-                                >
-                              </div>
-                              <div
-                                class="relative h-1.5 bg-exo-black/60 rounded-sm overflow-hidden"
-                              >
-                                <div
-                                  class="absolute inset-y-0 left-0 bg-gradient-to-r from-blue-500 to-blue-400 transition-all duration-300"
-                                  style="width: {downloadInfo.progress
-                                    .percentage}%"
-                                ></div>
-                              </div>
-                              <div
-                                class="flex justify-between text-xs font-mono text-exo-light-gray"
-                              >
-                                <span
-                                  >{formatSpeed(
-                                    downloadInfo.progress.speed,
-                                  )}</span
-                                >
-                                <span
-                                  >ETA: {formatEta(
-                                    downloadInfo.progress.etaMs,
-                                  )}</span
-                                >
-                                <span
-                                  >{downloadInfo.progress
-                                    .completedFiles}/{downloadInfo.progress
-                                    .totalFiles} files</span
-                                >
-                              </div>
-                            </div>
-                            {#if downloadInfo.perNode.length > 0}
-                              <div
-                                class="mt-2 space-y-2 max-h-48 overflow-y-auto pr-1"
-                              >
-                                {#each downloadInfo.perNode as nodeProg}
-                                  {@const nodePercent = Math.min(
-                                    100,
-                                    Math.max(0, nodeProg.progress.percentage),
-                                  )}
-                                  {@const isExpanded =
-                                    instanceDownloadExpandedNodes.has(
-                                      nodeProg.nodeId,
-                                    )}
-                                  <div
-                                    class="rounded border border-exo-medium-gray/40 bg-exo-black/30 p-2"
-                                  >
-                                    <button
-                                      type="button"
-                                      class="w-full text-left space-y-1.5"
-                                      onclick={() =>
-                                        toggleInstanceDownloadDetails(
-                                          nodeProg.nodeId,
-                                        )}
-                                    >
-                                      <div
-                                        class="flex items-center justify-between text-[11px] font-mono text-exo-light-gray"
-                                      >
-                                        <span
-                                          class="text-white/80 truncate pr-2"
-                                          >{nodeProg.nodeName}</span
-                                        >
-                                        <span
-                                          class="flex items-center gap-1 text-blue-300"
-                                        >
-                                          {nodePercent.toFixed(1)}%
-                                          <svg
-                                            class="w-3 h-3 text-exo-light-gray"
-                                            viewBox="0 0 20 20"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                          >
-                                            <path
-                                              d="M6 8l4 4 4-4"
-                                              class={isExpanded
-                                                ? "transform rotate-180 origin-center transition-transform duration-150"
-                                                : "transition-transform duration-150"}
-                                            ></path>
-                                          </svg>
-                                        </span>
-                                      </div>
-                                      <div
-                                        class="relative h-1.5 bg-exo-black/60 rounded-sm overflow-hidden"
-                                      >
-                                        <div
-                                          class="absolute inset-y-0 left-0 bg-gradient-to-r from-blue-500 to-blue-400 transition-all duration-300"
-                                          style="width: {nodePercent.toFixed(
-                                            1,
-                                          )}%"
-                                        ></div>
-                                      </div>
-                                      <div
-                                        class="flex items-center justify-between text-[11px] font-mono text-exo-light-gray"
-                                      >
-                                        <span
-                                          >{formatBytes(
-                                            nodeProg.progress.downloadedBytes,
-                                          )} / {formatBytes(
-                                            nodeProg.progress.totalBytes,
-                                          )}</span
-                                        >
-                                        <span
-                                          >{formatSpeed(
-                                            nodeProg.progress.speed,
-                                          )} • ETA {formatEta(
-                                            nodeProg.progress.etaMs,
-                                          )}</span
-                                        >
-                                      </div>
-                                    </button>
-
-                                    {#if isExpanded}
-                                      <div class="mt-2 space-y-1.5">
-                                        {#if nodeProg.progress.files.length === 0}
-                                          <div
-                                            class="text-[11px] font-mono text-exo-light-gray/70"
-                                          >
-                                            No file details reported.
-                                          </div>
-                                        {:else}
-                                          {#each nodeProg.progress.files as f}
-                                            {@const filePercent = Math.min(
-                                              100,
-                                              Math.max(0, f.percentage ?? 0),
-                                            )}
-                                            {@const isFileComplete =
-                                              filePercent >= 100}
-                                            <div
-                                              class="rounded border border-exo-medium-gray/30 bg-exo-black/40 p-2"
-                                            >
-                                              <div
-                                                class="flex items-center justify-between text-[10px] font-mono text-exo-light-gray/90"
-                                              >
-                                                <span class="truncate pr-2"
-                                                  >{f.name}</span
-                                                >
-                                                <span
-                                                  class={isFileComplete
-                                                    ? "text-green-400"
-                                                    : "text-white/80"}
-                                                  >{filePercent.toFixed(
-                                                    1,
-                                                  )}%</span
-                                                >
-                                              </div>
-                                              <div
-                                                class="relative h-1 bg-exo-black/60 rounded-sm overflow-hidden mt-1"
-                                              >
-                                                <div
-                                                  class="absolute inset-y-0 left-0 bg-gradient-to-r {isFileComplete
-                                                    ? 'from-green-500 to-green-400'
-                                                    : 'from-exo-green to-exo-green/70'} transition-all duration-300"
-                                                  style="width: {filePercent.toFixed(
-                                                    1,
-                                                  )}%"
-                                                ></div>
-                                              </div>
-                                              <div
-                                                class="flex items-center justify-between text-[10px] text-exo-light-gray/70 mt-0.5"
-                                              >
-                                                <span
-                                                  >{formatBytes(
-                                                    f.downloadedBytes,
-                                                  )} / {formatBytes(
-                                                    f.totalBytes,
-                                                  )}</span
-                                                >
-                                                <span
-                                                  >{formatSpeed(f.speed)} • ETA
-                                                  {formatEta(f.etaMs)}</span
-                                                >
-                                              </div>
-                                            </div>
-                                          {/each}
-                                        {/if}
-                                      </div>
-                                    {/if}
-                                  </div>
-                                {/each}
-                              </div>
-                            {/if}
-                            <div class="mt-2 space-y-1">
-                              <div
-                                class="text-xs text-blue-400 font-mono tracking-wider"
-                              >
-                                DOWNLOADING
-                              </div>
-                              <p
-                                class="text-[11px] text-white/50 leading-relaxed"
-                              >
-                                Downloading model files. Model runs on your
-                                devices so needs to be downloaded before you can
-                                chat.
-                              </p>
-                            </div>
-                          {:else}
-                            <div class="mt-1 space-y-1">
-                              <div
-                                class="text-xs {getStatusColor(
-                                  downloadInfo.statusText,
-                                )} font-mono tracking-wider"
-                              >
-                                {downloadInfo.statusText}
-                              </div>
-                              {#if isLoading}
-                                {@const loadStatus =
-                                  deriveInstanceStatus(instance)}
-                                {#if loadStatus.totalLayers && loadStatus.totalLayers > 0}
-                                  <div class="mt-1 space-y-1">
-                                    <div
-                                      class="flex justify-between text-xs font-mono"
-                                    >
-                                      <span class="text-yellow-400"
-                                        >{(
-                                          ((loadStatus.layersLoaded ?? 0) /
-                                            loadStatus.totalLayers) *
-                                          100
-                                        ).toFixed(0)}%</span
-                                      >
-                                      <span class="text-exo-light-gray"
-                                        >{loadStatus.layersLoaded ?? 0} / {loadStatus.totalLayers}
-                                        layers</span
-                                      >
-                                    </div>
-                                    <div
-                                      class="relative h-1.5 bg-exo-black/60 rounded-sm overflow-hidden"
-                                    >
-                                      <div
-                                        class="absolute inset-y-0 left-0 bg-gradient-to-r from-yellow-500 to-yellow-400 transition-all duration-300"
-                                        style="width: {((loadStatus.layersLoaded ??
-                                          0) /
-                                          loadStatus.totalLayers) *
-                                          100}%"
-                                      ></div>
-                                    </div>
-                                  </div>
-                                {:else}
-                                  <p
-                                    class="text-[11px] text-white/50 leading-relaxed"
-                                  >
-                                    Loading model into memory...
-                                  </p>
-                                {/if}
-                              {:else if isWarmingUp}
-                                <p
-                                  class="text-[11px] text-white/50 leading-relaxed"
-                                >
-                                  Warming up...
-                                </p>
-                              {:else if isReady || isRunning}
-                                <p
-                                  class="text-[11px] text-green-400/70 leading-relaxed"
-                                >
-                                  Ready to chat!
-                                </p>
-                              {/if}
-                            </div>
-                            {#if downloadInfo.isFailed && downloadInfo.errorMessage}
-                              <div
-                                class="text-xs text-red-400/80 font-mono mt-1 break-words"
-                              >
-                                {downloadInfo.errorMessage}
-                              </div>
-                            {/if}
-                          {/if}
-                        </div>
-                      </div>
-                    </div>
-                  {/each}
-                </div>
-              </div>
-            {/if}
-          </aside>
-        {/if}
-      </div>
+                + Launch Model
+              </button>
+            {/snippet}
+          </TopologyPanel>
+        {/snippet}
+      </SplitView>
     {/if}
   </main>
 </div>
