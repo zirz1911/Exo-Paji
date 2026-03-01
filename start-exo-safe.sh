@@ -16,6 +16,10 @@ echo ""
 #   → บน M4 ใหม่อาจมี compatibility issue กับ aggressive caching
 export MLX_DISABLE_METAL_CACHE=1
 
+# PYTHONPATH fix: uv venv + Python 3.13 does not process .pth files correctly
+# exo uses src/ layout with editable install via .pth — must add manually
+export PYTHONPATH="/Users/paji/Desktop/Paji/Exo-Paji/src${PYTHONPATH:+:$PYTHONPATH}"
+
 # MLX_MEMORY_LIMIT (Optional - uncomment if needed)
 #   → จำกัด memory ที่ MLX ใช้ได้ (ป้องกัน memory pressure)
 #   → ตัวอย่าง: 8GB = 8589934592 bytes
@@ -23,6 +27,7 @@ export MLX_DISABLE_METAL_CACHE=1
 
 echo "✓ Environment variables set:"
 echo "  - MLX_DISABLE_METAL_CACHE=1"
+echo "  - PYTHONPATH=src/ (pth fix)"
 # echo "  - MLX_MEMORY_LIMIT=8GB"
 echo ""
 
