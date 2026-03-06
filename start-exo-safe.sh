@@ -43,7 +43,9 @@ echo "  - --offline (single-node mode)"
 echo ""
 
 # Start EXO
-uv run exo --no-fast-synch --offline "$@"
+# Use .venv/bin/exo directly — avoids uv triggering Rust recompile on every launch
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+"$SCRIPT_DIR/.venv/bin/exo" --no-fast-synch --offline "$@"
 
 # Note: "$@" allows passing additional arguments
 # Example: ./start-exo-safe.sh -vv (enable verbose logging)
